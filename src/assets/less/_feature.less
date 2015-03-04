@@ -1,0 +1,35 @@
+.feature{
+
+  h1{
+    text-align: center;
+
+  }
+
+  .feature-items{
+    float: left;
+    width: 270px;
+    padding-top: 135px;
+    position: relative;
+    margin: 0 30px 60px 0;
+    text-align: center;
+
+    @feature-size: 5em;
+    .fa-stack {
+      width: @feature-size;
+      height: @feature-size;
+      line-height: @feature-size;
+
+      .fa-stack-2x{
+        font-size: @feature-size;
+        color: @brand-primary;
+      }
+
+      .fa-stack-1x{
+        font-size: @feature-size / 2;
+      }
+    }
+
+
+  }
+
+}

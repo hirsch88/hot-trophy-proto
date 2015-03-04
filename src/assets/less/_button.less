@@ -1,0 +1,35 @@
+.btn{
+
+//  font-weight: 700;
+//  text-align: center;
+  text-transform: uppercase;
+
+//  transition: background-color .2s ease-in-out;
+//  -webkit-transition: background-color .2s ease-in-out;
+//  border: 2px solid transparent;
+
+
+  &.btn-lg{
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 14px;
+    line-height: 50px;
+  }
+
+
+  &.btn-outline{
+    background-color: transparent !important;
+    transition: border .2s ease-in-out;
+    -webkit-transition: border .2s ease-in-out;
+
+    &.btn-primary{
+      border-color: @brand-primary;
+    }
+
+    &.btn-info{
+      border-color: @brand-info;
+    }
+
+  }
+
+}

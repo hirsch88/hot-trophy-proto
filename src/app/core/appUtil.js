@@ -23,8 +23,8 @@
   var appUtil = {
     title: 'hot-trophy',
     server: {
-      local: 'http://localhost:1338/api/',
-      prod:  'http://localhost:1338/api/'
+      local: 'http://localhost:2002/api/',
+      prod:  'http://localhost:2002/api/'
     },
 
     /**

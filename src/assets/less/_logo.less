@@ -1,0 +1,35 @@
+div.ht-logo {
+
+  //  border-radius: 100%;
+  //  border-width: 2px;
+  //  border-style: solid;
+
+  > i {
+    vertical-align: middle;
+    color:          lighten(@brand-warning, 20%);
+  }
+
+  > span.text {
+    padding-left: 8px;
+    vertical-align: middle;
+    > b {
+      text-transform: uppercase;
+      color:          @brand-success;
+    }
+  }
+
+  &.no-text span {
+    display: none;
+  }
+
+  &.ht-logo-md {
+    > i {
+      font-size: 30px;
+    }
+    > span.text {
+      font-size:   24px;
+      line-height: 24px;
+    }
+  }
+
+}

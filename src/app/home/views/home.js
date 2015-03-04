@@ -22,7 +22,7 @@
    */
   function HomeRouteConfig($routeProvider) {
     $routeProvider
-      .when('/home', {
+      .when('/', {
         navigationKey: 'home',
         templateUrl:   'app/home/views/home.html',
         controller:    'HomeController',

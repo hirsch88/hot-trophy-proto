@@ -1,2 +1,6 @@
 # hot-trophy
-Frontend with AngularJs
+
+> Generated with [Hirsch Generator](https://www.npmjs.com/package/generator-hirsch)
+
+## Overview
+ TODO

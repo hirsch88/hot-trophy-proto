@@ -2,7 +2,7 @@ var lib = require('bower-files')();
 
 module.exports = function() {
   var conf = {
-    basePath:   '',
+    basePath:   '../',
     frameworks: ['mocha', 'chai'],
     reporters:  ['progress'],
     browsers:   ['Firefox'],

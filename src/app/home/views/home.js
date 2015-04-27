@@ -9,24 +9,26 @@
   'use strict';
 
   angular
-    .module('home')
-    .config(HomeRouteConfig)
+    .module('home.home',[
+
+    ])
+    .config(StateConfig)
     .controller('HomeController', HomeController);
 
-  /**
-   * @memberOf home.home
-   * @name HomeRouteConfig
-   *
-   * @param $routeProvider
-   * @constructor
-   */
-  function HomeRouteConfig($routeProvider) {
-    $routeProvider
-      .when('/', {
+  function StateConfig($stateProvider) {
+    $stateProvider
+      .state('admin.home', {
+        url:           '/home',
+        session:       true,
         navigationKey: 'home',
-        templateUrl:   'app/home/views/home.html',
-        controller:    'HomeController',
-        controllerAs:  'home'
+        views:         {
+          'content': {
+            templateUrl:  'app/home/views/home.html',
+            controller:   'HomeController',
+            controllerAs: 'home'
+          }
+        }
+
       });
   }
 
@@ -37,9 +39,9 @@
    * @param members {Object}
    * @constructor
    */
-  function HomeController(members, appUtil) {
+  function HomeController(members) {
     var vm = this;
-    vm.title = appUtil.title;
+    vm.title = AppUtil.title;
 
     vm.list = [];
     members.get()

@@ -5,8 +5,8 @@
   'use strict';
 
   angular
-    .module( 'common.directive.header', [] )
-    .directive( 'htHeader', HeaderDirective );
+    .module('common.directive.header', [])
+    .directive('htHeader', HeaderDirective);
 
   /**
    * @memberOf layout
@@ -22,10 +22,10 @@
    */
   function HeaderDirective() {
     return {
-      restrict: 'EA',
-      templateUrl: 'app/layout/common/directives/header.directive.html',
-      controller: HeaderController,
-      controllerAs: 'header',
+      restrict:         'EA',
+      templateUrl:      'app/layout/directives/header.directive.html',
+      controller:       HeaderController,
+      controllerAs:     'header',
       bindToController: true // because the scope is isolated
     }
   }
@@ -36,9 +36,9 @@
    *
    * @constructor
    */
-  function HeaderController(appUtil) {
+  function HeaderController(AppUtil) {
     var vm = this;
-    vm.title = appUtil.title;
+    vm.title = AppUtil.title;
   }
 
 }());

@@ -20,11 +20,11 @@
    * @name AppUtil
    * @see app.util
    */
-  var appUtil = {
-    title: 'hot-trophy',
+  var AppUtil = {
+    title:  'hotTrophy',
     server: {
-      local: 'http://localhost:2002/api/',
-      prod:  'http://localhost:2002/api/'
+      local: 'http://localhost:1337/api/',
+      prod:  'http://localhost:1337/api/'
     },
 
     /**
@@ -43,15 +43,21 @@
       switch (window.location.hostname) {
         case 'localhost':
           return this.server.local;
-          break;
-        case 'dev.hot-trophy':
-          return this.server.dev;
-          break;
-        case 'test.hot-trophy':
-          return this.server.test;
-          break;
         default:
           return this.server.prod;
+      }
+    },
+
+    /**
+     * @memberOf app.util
+     * @method getEnvironment
+     */
+    getEnvironment: function () {
+      switch (window.location.hostname) {
+        case 'localhost':
+          return 'dev';
+        default:
+          return 'prod';
       }
     },
 
@@ -69,14 +75,26 @@
      */
     buildTemplateUrl: function (url) {
       return 'app/views/' + url;
+    },
+
+    /**
+     * @memberOf app.util
+     * @method joinPath
+     *
+     * @description
+     * Joins the array to url path
+     *
+     * @example AppUtil.joinPath(['events','abos']) // -> 'events/abos'
+     *
+     * @param array {Array} Part of the url
+     * @returns {String} url
+     */
+    joinPath: function (array) {
+      return array.join('/');
     }
 
   };
 
-  angular
-    .module('app.util', [])
-    .value('appUtil', appUtil);
-
-  window.appUtil = appUtil;
+  window.AppUtil = AppUtil;
 
 }(window));

@@ -1,8 +1,9 @@
-var lib = require('bower-files')();
+module.exports = function () {
 
-module.exports = function() {
+  var projectConfig = require('./project.config')();
+
   var conf = {
-    basePath:   '../',
+    basePath:   '',
     frameworks: ['mocha', 'chai'],
     reporters:  ['progress'],
     browsers:   ['Firefox'],
@@ -18,17 +19,15 @@ module.exports = function() {
       'karma-chrome-launcher',
       'karma-firefox-launcher'
     ],
-    files: []
+    files:   []
   };
 
-  //3rd Party Code from bower
-  conf.files = conf.files.concat(lib.ext('js').files);
+  // angular script files & 3rd party code from bower
+  conf.files = conf.files.concat(
+    projectConfig.karma.files
+  );
 
   conf.files = conf.files.concat([
-    //App-specific Code
-    'src/app/app.js',
-    'src/app/**/*.js',
-
     //Test-Specific Code
     'node_modules/chai/chai.js',
     'test/lib/chai-should.js',

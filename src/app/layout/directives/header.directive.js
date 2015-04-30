@@ -25,9 +25,14 @@
       restrict:         'EA',
       templateUrl:      'app/layout/directives/header.directive.html',
       controller:       HeaderController,
-      controllerAs:     'header',
+      controllerAs:     'htHeader',
+      link: link,
       bindToController: true // because the scope is isolated
     }
+  }
+
+  function link(scope, element, attrs) {
+    scope.isAdmin = ( attrs.mode && attrs.mode === 'admin' );
   }
 
   /**
@@ -36,9 +41,14 @@
    *
    * @constructor
    */
-  function HeaderController(AppUtil) {
+  function HeaderController($scope) {
     var vm = this;
     vm.title = AppUtil.title;
+
+    vm.isAdminSection = function () {
+      return $scope.isAdmin;
+    }
+
   }
 
 }());

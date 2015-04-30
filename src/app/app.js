@@ -26,7 +26,10 @@
       'layout',
 
       // App modules with business logic
-      'home'
+      'home',
+      'login',
+      'myTournaments'
+
 
 
     ]);

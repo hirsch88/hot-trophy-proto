@@ -2798,7 +2798,7 @@ output {
   padding-top: 7px;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #aaaaaa;
+  color: #444444;
 }
 .form-control {
   display: block;
@@ -2807,7 +2807,7 @@ output {
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #aaaaaa;
+  color: #444444;
   background-color: #ffffff;
   background-image: none;
   border: 1px solid #cccccc;
@@ -4052,7 +4052,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   font-size: 14px;
   font-weight: normal;
   line-height: 1;
-  color: #aaaaaa;
+  color: #444444;
   text-align: center;
   background-color: #f4f4f4;
   border: 1px solid #cccccc;
@@ -6882,6 +6882,16 @@ div.ht-logo.ht-logo-md > span.text {
 }
 .btn.btn-outline.btn-info {
   border-color: #29c7ab;
+}
+form.login-form {
+  margin: auto 0 auto 120px;
+}
+form.login-form .well {
+  background: #604575;
+  border: none;
+}
+form.login-form input {
+  height: 45px;
 }
 .feature h1 {
   text-align: center;

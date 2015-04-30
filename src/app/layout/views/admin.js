@@ -17,6 +17,7 @@
         session: true,
         views:   {
           'root': {
+            url:         '/admin',
             templateUrl: 'app/layout/views/admin.html'
           }
         }

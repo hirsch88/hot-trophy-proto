@@ -20,7 +20,7 @@
    */
   function getSecuredRoutes() {
     return [
-      '/private/*'
+      '/admin/*'
     ];
   }
 
@@ -38,13 +38,15 @@
    * @returns {{}}
    * @constructor
    */
-  function AppRouterService() {
+  function AppRouterService(APP_ROUTER_PRIVATE_ROUTES) {
 
     var _initialized = false;
 
     var service = {
       hasInitialized: getInit,
-      initialized:    initialized
+      initialized:    initialized,
+      isStatePrivate: isStatePrivate,
+      isUrlPrivate:   isUrlPrivate
     };
 
     return service;
@@ -59,6 +61,51 @@
       _initialized = true;
     }
 
+    function isStatePrivate($state) {
+      console.log($state);
+
+
+
+    }
+
+    /**
+     * @name isThisAPrivateRoute
+     * @param url
+     * @returns {Boolean}
+     */
+    function isUrlPrivate(url) {
+      var isPrivate = false;
+      url = parseRoute(url);
+
+      for (var i = 0; i < APP_ROUTER_PRIVATE_ROUTES.length; i++) {
+        if (doesUrlMatchPattern(APP_ROUTER_PRIVATE_ROUTES[i], url)) {
+          isPrivate = true;
+        }
+      }
+
+      return isPrivate;
+    }
+
+    /**
+     * @name parseRoute
+     * @param route
+     * @returns {String}
+     */
+    function parseRoute(route) {
+      return route.split('#')[1] || route || '';
+    }
+
+    /**
+     * @name doesUrlMatchPattern
+     * @param pattern
+     * @param route
+     * @returns {Boolean}
+     */
+    function doesUrlMatchPattern(pattern, route) {
+      var exp = new RegExp(pattern);
+      return exp.test(route);
+    }
+
 
   }
 
@@ -71,8 +118,7 @@
    * @param $state
    * @constructor
    */
-  function AppRouter($q, $rootScope, $urlRouter, logger, $state, AppRouterService,
-                     APP_ROUTER_PRIVATE_ROUTES) {
+  function AppRouter($q, $rootScope, $urlRouter, logger, $state, AppRouterService) {
 
     var log = logger('AppRouter');
     log.info('start');
@@ -129,15 +175,17 @@
      */
     function isThisAPrivateRoute(options) {
       var deferred = $q.defer();
-      var isPrivate = false;
+      //var isPrivate = false;
+      //
+      //options.route = parseRoute(options.route);
+      //
+      //for (var i = 0; i < APP_ROUTER_PRIVATE_ROUTES.length; i++) {
+      //  if (doesUrlMatchPattern(APP_ROUTER_PRIVATE_ROUTES[i], options.route)) {
+      //    isPrivate = true;
+      //  }
+      //}
 
-      options.route = parseRoute(options.route);
-
-      for (var i = 0; i < APP_ROUTER_PRIVATE_ROUTES.length; i++) {
-        if (doesUrlMatchPattern(APP_ROUTER_PRIVATE_ROUTES[i], options.route)) {
-          isPrivate = true;
-        }
-      }
+      var isPrivate = AppRouterService.isUrlPrivate(options.route);
 
       if (isPrivate) {
         deferred.resolve(options);

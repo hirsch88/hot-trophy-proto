@@ -13,19 +13,19 @@
 
     ])
     .config(StateConfig)
-    .controller('HomeController', HomeController);
+    .controller('htHomeController', htHomeController);
 
   function StateConfig($stateProvider) {
     $stateProvider
-      .state('admin.home', {
+      .state('public.home', {
         url:           '/home',
         session:       true,
         navigationKey: 'home',
         views:         {
           'content': {
             templateUrl:  'app/home/views/home.html',
-            controller:   'HomeController',
-            controllerAs: 'home'
+            controller:   'htHomeController',
+            controllerAs: 'htHome'
           }
         }
 
@@ -34,22 +34,28 @@
 
   /**
    * @memberOf home.home
-   * @name HomeController
+   * @name htHomeController
    *
    * @param members {Object}
    * @constructor
    */
-  function HomeController(members) {
+  function htHomeController($state) {
     var vm = this;
     vm.title = AppUtil.title;
 
-    vm.list = [];
-    members.get()
-      .then(function (result) {
-        vm.list = result;
-      });
 
-    vm.buildFullName = members.getFullName;
+    vm.username = '';
+    vm.email = '';
+    vm.password = '';
+
+    vm.register = register;
+
+    ///////////////////////////////
+
+    function register() {
+      $state.go('admin.myTournamentsList');
+    }
+
 
   }
 

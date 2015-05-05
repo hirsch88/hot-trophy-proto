@@ -27,10 +27,10 @@
 
     this.schedule = _(this.schedule)
       .map(function (round) {
-        round[0][0].score = null;
-        round[0][1].score = null;
-        round[1][0].score = null;
-        round[1][1].score = null;
+        round[0].scoreHome = null;
+        round[0].scoreAway = null;
+        round[1].scoreHome = null;
+        round[1].scoreAway = null;
         return round;
       })
       .value();
@@ -40,6 +40,8 @@
   Event.prototype.getTable = function () {
     var table = [];
     var self = this;
+    var rank = 1;
+    var previousRow;
 
     _.forEach(self.teams, function (team) {
       table.push({
@@ -55,53 +57,114 @@
       });
     });
 
-    table = _.map(table, function (row) {
+    table = _(table)
+      .map(function (row) {
 
-      row.ply = _.countBy(self.schedule, function (round) {
-          return (round[0][0].id === row.team.id || round[0][1].id === row.team.id ) && round[0][1].score !== null ||
-            (round[1][0].id === row.team.id || round[1][1].id === row.team.id ) && round[1][1].score !== null;
-        }).true || 0;
+        // played
+        row.ply = _.countBy(self.schedule, function (round) {
+            return (round[0][0].id === row.team.id || round[0][1].id === row.team.id ) && round[0].scoreHome !== null ||
+              (round[1][0].id === row.team.id || round[1][1].id === row.team.id ) && round[1].scoreHome !== null;
+          }).true || 0;
 
-      _(self.schedule)
-        .filter(function (round) {
-          return (round[0][0].id === row.team.id || round[0][1].id === row.team.id) && round[0][1].score !== null;
-        })
-        .map(function (round) {
+        // goals
+        _(self.schedule)
+          .filter(function (round) {
+            return (round[0][0].id === row.team.id || round[0][1].id === row.team.id) && round[0].scoreHome !== null;
+          })
+          .map(function (round) {
 
-          // Home
-          if (round[0][0].id === row.team.id) {
-            row.gp += ( round[0][0].score !== null ) ? round[0][0].score : 0;
-            row.gn += ( round[0][1].score !== null ) ? round[0][1].score : 0;
+            var teams = [];
+            teams.push(round[0][0].id);
+            teams.push(round[0][1].id);
+            teams.push(round[1][0].id);
+            teams.push(round[1][1].id);
 
-          }
-          else if(round[1][0].id === row.team.id){
-            row.gp += ( round[1][0].score !== null ) ? round[1][0].score : 0;
-            row.gn += ( round[1][1].score !== null ) ? round[1][1].score : 0;
-          }
+            var index = _.indexOf(teams, row.team.id);
 
-          else if(round[0][1].id === row.team.id){
-            row.gn += ( round[0][0].score !== null ) ? round[0][0].score : 0;
-            row.gp += ( round[0][1].score !== null ) ? round[0][1].score : 0;
-          }
+            var roundIndex = 0;
+            var sideIndex = 0;
+            switch (index) {
+              // 1st Round
+              case 0: // Home
+                roundIndex = 0;
+                sideIndex = 0;
+                break;
 
-          // Away
-          else {
-            row.gn += ( round[1][0].score !== null ) ? round[1][0].score : 0;
-            row.gp += ( round[1][1].score !== null ) ? round[1][1].score : 0;
-          }
+              case 1: // Away
+                roundIndex = 0;
+                sideIndex = 1;
+                break;
+
+              // 2nd Round
+              case 2: // Home
+                roundIndex = 1;
+                sideIndex = 0;
+                break;
+
+              case 3:// Away
+                roundIndex = 1;
+                sideIndex = 1;
+                break;
+            }
+
+            function reverseSide(sideIndex) {
+              return (sideIndex === 0) ? 1 : 0;
+            }
+
+            function reverseScore(sideIndex) {
+              return (sideIndex === 0) ? 'scoreAway' : 'scoreHome';
+            }
+
+            function getScore(sideIndex) {
+              return (sideIndex === 1) ? 'scoreAway' : 'scoreHome';
+            }
 
 
-        })
-        .value();
+            if (index >= 0) {
 
+              // Goals
+              row.gp += round[roundIndex][getScore(sideIndex)]; //( round[roundIndex][sideIndex].score !== null ) ? round[roundIndex][sideIndex].score : 0;
+              row.gn += round[roundIndex][reverseSide(sideIndex)].score; //( round[roundIndex][sideIndex].score !== null ) ? round[roundIndex][sideIndex].score : 0;
 
-      return row;
-    });
+              // Loses
+              row.lose += ( round[roundIndex][getScore(sideIndex)] < round[roundIndex][reverseScore(sideIndex)] ) ? 1 : 0;
 
+              // Draws
+              row.draw += ( round[roundIndex][getScore(sideIndex)] === round[roundIndex][reverseScore(sideIndex)] ) ? 1 : 0;
 
-    if (this.status === 2) {
-      console.info('table', table);
-    }
+              // Wins
+              row.win += ( round[roundIndex][getScore(sideIndex)] > round[roundIndex][reverseScore(sideIndex)] ) ? 1 : 0;
+
+              // Points
+              if (round[roundIndex][getScore(sideIndex)] > round[roundIndex][reverseScore(sideIndex)]) {
+                row.pts += 3;
+              } else if (round[roundIndex][getScore(sideIndex)] === round[roundIndex][reverseScore(sideIndex)]) {
+                row.pts += 1;
+              }
+
+            }
+
+          })
+          .value();
+
+        return row;
+      })
+      .sortByOrder(['pts','gp','gn'], [false, false, true])
+      .map(function (row) {
+        row.rank = rank;
+
+        if (previousRow && previousRow.pts > row.pts) {
+          row.rank++;
+        }
+
+        previousRow = row;
+        rank = row.rank;
+        return row;
+      })
+      .value();
+
+    console.log(table);
+
     return table;
   };
 
@@ -130,28 +193,28 @@
     ]);
     list[0].generateSchedule();
 
-    list[0].schedule[0][0][0].score = 3;
-    list[0].schedule[0][0][1].score = 1;
+    list[0].schedule[0][0].scoreHome = 0;
+    list[0].schedule[0][0].scoreAway = 4;
 
-    //list[0].schedule[1][0][0].score = 6;
-    //list[0].schedule[1][0][1].score = 1;
-    //
-    //list[0].schedule[2][0][0].score = 0;
-    //list[0].schedule[2][0][1].score = 2;
+    list[0].schedule[1][0].scoreHome = 1;
+    list[0].schedule[1][0].scoreAway = 2;
+
+    list[0].schedule[2][0].scoreHome = 1;
+    list[0].schedule[2][0].scoreAway = 1;
 
 
-    //create('Soccer Event', moment().days(10), EVENT_STATUS_READY, [
-    //  {id: 1, name: 'Pinguins', icon: ' fa-linux'},
-    //  {id: 2, name: 'Appels', icon: 'fa-apple'},
-    //  {id: 3, name: 'Birds', icon: 'fa-twitter'},
-    //  {id: 4, name: 'Stars', icon: 'fa-star'}
-    //]);
-    //list[1].generateSchedule();
-    //
-    //create('Medical Sports Day', moment().days(30), EVENT_STATUS_OPEN, [
-    //  {id: 1, name: 'Heartbreakers', icon: 'fa-heartbeat'},
-    //  {id: 2, name: 'Ambulance', icon: 'fa-ambulance'}
-    //]);
+    create('Soccer Event', moment().days(10), EVENT_STATUS_READY, [
+      {id: 1, name: 'Pinguins', icon: ' fa-linux'},
+      {id: 2, name: 'Appels', icon: 'fa-apple'},
+      {id: 3, name: 'Birds', icon: 'fa-twitter'},
+      {id: 4, name: 'Stars', icon: 'fa-star'}
+    ]);
+    list[1].generateSchedule();
+
+    create('Medical Sports Day', moment().days(30), EVENT_STATUS_OPEN, [
+      {id: 1, name: 'Heartbreakers', icon: 'fa-heartbeat'},
+      {id: 2, name: 'Ambulance', icon: 'fa-ambulance'}
+    ]);
 
 
     var service = {

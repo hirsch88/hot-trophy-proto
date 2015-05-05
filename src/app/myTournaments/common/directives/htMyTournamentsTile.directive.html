@@ -49,17 +49,31 @@
       <!-- Active -->
       <div class="row" ng-switch-when="2">
         <div class="col-sm-6">
-          <table class="table">
-            <tbody>
-            <tr>
 
-            </tr>
-            </tbody>
-          </table>
+          <ht-my-tournaments-mini-table tournament="myTournamentsTile.tournament"></ht-my-tournaments-mini-table>
+
         </div>
         <div class="col-sm-6">
-          <pre>{{myTournamentsTile.tournament.getTable()|json}}</pre>
+          <!--<pre>{{myTournamentsTile.tournament.getTable()|json}}</pre>-->
+
+          <ht-my-tournaments-mini-schedule tournament="myTournamentsTile.tournament"></ht-my-tournaments-mini-schedule>
+
+
         </div>
+
+        <div class="footer">
+          <button class="btn btn-primary" title="Enter game results"
+                  ui-sref="admin.tournament({id:myTournamentsTile.tournament.id})">
+            <!--<i class="fa fa-chevron-right"></i>-->
+            Add results
+          </button>
+
+          <button class="btn btn-default" title="Open event"
+                  ui-sref="admin.tournament({id:myTournamentsTile.tournament.id})">
+            <i class="fa fa-chevron-right"></i>
+          </button>
+        </div>
+
       </div>
 
 

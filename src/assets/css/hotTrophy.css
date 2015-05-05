@@ -6934,6 +6934,18 @@ form.login-form input {
   bottom: 30px;
   right: 30px;
 }
+.my-tournaments-tile .table td {
+  line-height: 2em;
+}
+.my-tournaments-tile .table td i {
+  font-size: 2em;
+  width: 2em;
+}
+.my-tournaments-tile .table td span {
+  line-height: 2em;
+  vertical-align: super;
+  font-size: 1.2em;
+}
 .list {
   list-style: none;
 }

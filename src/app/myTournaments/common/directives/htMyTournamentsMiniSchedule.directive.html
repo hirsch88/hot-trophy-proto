@@ -1,0 +1,16 @@
+<table class="table">
+
+  <tr ng-repeat="game in myTournamentsMiniSchedule.schedule | limitTo:3">
+
+    <td style="text-align: left">{{game[0].name}}</td>
+    <td style="text-align: left" width="60px"><i class="fa" ng-class="game[0].icon"></i></td>
+    <td style="text-align: center" width="60px"><span>{{game.scoreHome}}-{{game.scoreAway}}</span></td>
+    <td style="text-align: right" width="60px"><i class="fa" ng-class="game[1].icon"></i></td>
+    <td style="text-align: right">{{game[1].name}}</td>
+
+  </tr>
+
+
+
+</table>
+

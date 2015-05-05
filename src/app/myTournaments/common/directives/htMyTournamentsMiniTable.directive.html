@@ -1,0 +1,10 @@
+<table class="table">
+  <!--<tbody>-->
+  <tr ng-repeat="row in myTournamentsMiniTable.table | limitTo:3">
+    <td width="3em"><span>{{row.rank}}</span></td>
+    <td width="4em"><i class="fa" ng-class="row.team.icon"></i></td>
+    <td><span>{{row.team.name}}</span></td>
+    <td><span>{{row.pts}}</span>Pts</td>
+  </tr>
+  <!--</tbody>-->
+</table>

@@ -21,6 +21,11 @@
         url:           '/home',
         session:       true,
         navigationKey: 'home',
+        header:        {
+          signIn:        true,
+          profile:       false,
+          myTournaments: false
+        },
         views:         {
           'content': {
             templateUrl:  'app/home/views/home.html',

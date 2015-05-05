@@ -25,6 +25,8 @@
       // Layout components
       'layout',
 
+      'common.service.htTournaments',
+
       // App modules with business logic
       'home',
       'login',

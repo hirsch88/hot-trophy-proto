@@ -3427,8 +3427,8 @@ fieldset[disabled] .btn-success.active {
 }
 .btn-info {
   color: #ffffff;
-  background-color: #29c7ab;
-  border-color: #25b299;
+  background-color: #3498db;
+  border-color: #258cd1;
 }
 .btn-info:hover,
 .btn-info:focus,
@@ -3437,8 +3437,8 @@ fieldset[disabled] .btn-success.active {
 .btn-info.active,
 .open > .dropdown-toggle.btn-info {
   color: #ffffff;
-  background-color: #209d87;
-  border-color: #1a7f6d;
+  background-color: #217dbb;
+  border-color: #1c699d;
 }
 .btn-info:active,
 .btn-info.active,
@@ -3463,11 +3463,11 @@ fieldset[disabled] .btn-info:active,
 .btn-info.disabled.active,
 .btn-info[disabled].active,
 fieldset[disabled] .btn-info.active {
-  background-color: #29c7ab;
-  border-color: #25b299;
+  background-color: #3498db;
+  border-color: #258cd1;
 }
 .btn-info .badge {
-  color: #29c7ab;
+  color: #3498db;
   background-color: #ffffff;
 }
 .btn-warning {
@@ -5037,11 +5037,11 @@ a.label:focus {
   background-color: #209d87;
 }
 .label-info {
-  background-color: #29c7ab;
+  background-color: #3498db;
 }
 .label-info[href]:hover,
 .label-info[href]:focus {
-  background-color: #209d87;
+  background-color: #217dbb;
 }
 .label-warning {
   background-color: #fba500;
@@ -5304,7 +5304,7 @@ a.thumbnail.active {
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
 }
 .progress-bar-info {
-  background-color: #29c7ab;
+  background-color: #3498db;
 }
 .progress-striped .progress-bar-info {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
@@ -6881,7 +6881,7 @@ div.ht-logo.ht-logo-md > span.text {
   border-color: #604575;
 }
 .btn.btn-outline.btn-info {
-  border-color: #29c7ab;
+  border-color: #3498db;
 }
 form.login-form {
   margin: auto 0 auto 120px;
@@ -6915,4 +6915,37 @@ form.login-form input {
 }
 .feature .feature-items .fa-stack .fa-stack-1x {
   font-size: 2.5em;
+}
+.my-tournaments-tile {
+  height: 300px;
+  padding: 15px;
+}
+.my-tournaments-tile > .inner {
+  height: 100%;
+  width: 100%;
+}
+.my-tournaments-tile ht-my-tournaments-status {
+  position: absolute;
+  right: 30px;
+  top: 24px;
+}
+.my-tournaments-tile .footer {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
+.list {
+  list-style: none;
+}
+.list li {
+  line-height: 2em;
+}
+.list li i {
+  font-size: 2em;
+  width: 2em;
+}
+.list li span {
+  line-height: 2em;
+  vertical-align: super;
+  font-size: 1.2em;
 }

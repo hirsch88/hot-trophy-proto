@@ -1,0 +1,73 @@
+<div class="my-tournaments-tile" ng-class="myTournamentsTile.classes">
+  <div class="inner panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        {{myTournamentsTile.tournament.name}}
+        <small>{{myTournamentsTile.formatDate(myTournamentsTile.tournament.date)}}</small>
+      </h3>
+      <ht-my-tournaments-status status="myTournamentsTile.tournament.status"></ht-my-tournaments-status>
+    </div>
+    <div class="panel-body" ng-switch="myTournamentsTile.tournament.status">
+
+
+      <!-- Open -->
+      <div ng-switch-when="0">
+        <h4>Latest teams registrations:</h4>
+        <ul class="list">
+          <li ng-repeat="team in myTournamentsTile.tournament.teams | limitTo:3">
+            <i class="fa" ng-class="team.icon"></i>
+            <span>{{team.name}}</span>
+          </li>
+        </ul>
+
+        <div class="footer">
+          <button class="btn btn-primary">Register a Team</button>
+          <button class="btn btn-default" title="Open event"
+                  ui-sref="admin.tournament({id:myTournamentsTile.tournament.id})">
+            <i class="fa fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+
+      <!-- Ready -->
+      <div ng-switch-when="1">
+        <h4 style="text-align: center; margin-top: 45px;">
+          <strong style="font-size: 2em">Starts
+            {{myTournamentsTile.getDays(myTournamentsTile.tournament.date)}} </strong>
+        </h4>
+
+        <div class="footer">
+          <button class="btn btn-default" title="Open event"
+                  ui-sref="admin.tournament({id:myTournamentsTile.tournament.id})">
+            <i class="fa fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+
+      <!-- Active -->
+      <div class="row" ng-switch-when="2">
+        <div class="col-sm-6">
+          <table class="table">
+            <tbody>
+            <tr>
+
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-sm-6">
+          <pre>{{myTournamentsTile.tournament.getTable()|json}}</pre>
+        </div>
+      </div>
+
+
+      <!-- Archive -->
+      <div ng-switch-when="3">3</div>
+
+
+    </div>
+  </div>
+</div>
+

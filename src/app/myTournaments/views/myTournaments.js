@@ -18,7 +18,7 @@
 
     ])
     .config(StateConfig)
-    .controller('htMyTournamentsListController', htMyTournamentsListController);
+    .controller('htMyTournamentsController', htMyTournamentsController);
 
 
   /**
@@ -27,15 +27,20 @@
    */
   function StateConfig($stateProvider) {
     $stateProvider
-      .state('admin.myTournamentsList', {
+      .state('admin.myTournaments', {
         url:           '/tournaments',
         session:       true,
         navigationKey: 'myTournaments',
+        header:        {
+          signIn:        false,
+          profile:       true,
+          myTournaments: true
+        },
         views:         {
           'content': {
-            templateUrl:  'app/myTournaments/views/myTournamentsList.html',
-            controller:   'htMyTournamentsListController',
-            controllerAs: 'htMyTournamentsList'
+            templateUrl:  'app/myTournaments/views/myTournaments.html',
+            controller:   'htMyTournamentsController',
+            controllerAs: 'htMyTournaments'
           }
         }
 
@@ -47,8 +52,9 @@
    * @memberOf myTournaments.myTournamentsList
    * @name MyTournamentsMyTournamentsListController
    */
-  function htMyTournamentsListController() {
+  function htMyTournamentsController(htTournaments) {
     var vm = this;
+    vm.list = htTournaments.getAll();
 
     ////////////////////////////////////////////////////
 

@@ -1,35 +1,35 @@
 {
-  "name":            "hotTrophy",
-  "version":         "0.0.0",
-  "authors":         [
+  "name": "hotTrophy",
+  "version": "0.0.0",
+  "authors": [
     "Gery Hirschfeld <gery.hirschfeld@w3tec.ch>"
   ],
-  "description":     "Tournament Generator",
-  "main":            "dist/index.html",
-  "license":         "MIT",
-  "ignore":          [
+  "description": "Tournament Generator",
+  "main": "dist/index.html",
+  "license": "MIT",
+  "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "app/lib"
   ],
-  "dependencies":    {
-    "jquery":                                "*",
-    "bootstrap":                             "*",
-    "font-awesome":                          "*",
-    "lodash":                                "*",
-    "moment":                                "*",
-    "angular":                               "*",
-    "angular-sanitize":                      "*",
-    "angular-messages":                      "*",
-    "angular-cookie":                        "*",
-    "angular-translate":                     "*",
+  "dependencies": {
+    "jquery": "*",
+    "bootstrap": "*",
+    "font-awesome": "*",
+    "lodash": "*",
+    "moment": "~2.10.2",
+    "angular": "*",
+    "angular-sanitize": "*",
+    "angular-messages": "*",
+    "angular-cookie": "*",
+    "angular-translate": "*",
     "angular-translate-loader-static-files": "*",
-    "angular-ui-router":                     "*",
-    "restangular":                           "*"
+    "angular-ui-router": "*",
+    "restangular": "*"
   },
   "devDependencies": {
-    "angular-mocks":    "*",
+    "angular-mocks": "*",
     "angular-scenario": "*"
   }
 }

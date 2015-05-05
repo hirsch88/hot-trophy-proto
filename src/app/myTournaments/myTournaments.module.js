@@ -9,6 +9,9 @@
 
   angular
     .module('myTournaments', [
+      'myTournaments.directive.htMyTournamentsTile',
+      'myTournaments.directive.htMyTournamentsStatus',
+
       'myTournaments.list'
     ]);
 

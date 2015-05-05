@@ -12,6 +12,11 @@
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
+
+    $rootScope.header = {
+      hasSignIn: true
+    };
+
   }
 
 

@@ -2,7 +2,7 @@
  * Login
  * @namespace login
  */
-(function() {
+(function () {
   'use strict';
 
   /**
@@ -14,9 +14,7 @@
    * Route: /login
    */
   angular
-    .module('login.login', [
-
-    ])
+    .module('login.login', [])
     .config(StateConfig)
     .controller('htLoginController', htLoginController);
 
@@ -30,6 +28,11 @@
       .state('public.login', {
         url:           '/login',
         session:       true,
+        header:        {
+          signIn:        false,
+          profile:       false,
+          myTournaments: false
+        },
         navigationKey: 'login',
         views:         {
           'content': {
@@ -61,11 +64,11 @@
 
     function signIn() {
 
-      if(vm.username === 'mark' && vm.password === '1234'){
+      if (vm.username === 'Marc' && vm.password === '1234') {
         vm.hasFailed = false;
-        $state.go('admin.myTournamentsList');
+        $state.go('admin.myTournaments');
 
-      }else{
+      } else {
         vm.hasFailed = true;
         vm.username = '';
         vm.password = '';

@@ -21,8 +21,8 @@
         navigationKey: 'home',
         header:        {
           signIn:           true,
-          profile:          false,
-          myTournaments:    false,
+          profile:          true,
+          myTournaments:    true,
           createTournament: false
         },
         views:         {

@@ -4,7 +4,10 @@
     <div class="col-sm-10">
       <h1>
         {{htTournament.tournament.name}}
-        <small>{{htTournament.tournament.date}}</small>
+        <small>
+          <ht-tournament-status status="htTournament.tournament.status"></ht-tournament-status>
+          <span style="padding-left: 15px;">{{htTournament.formatDate(htTournament.tournament.date)}}</span>
+        </small>
       </h1>
     </div>
     <!--<div class="col-sm-2">-->
@@ -18,12 +21,12 @@
 
   <div class="row" style="margin-top: 15px">
 
-    <div class="tournament-tile col-lg-4 col-md-6 col-sm-6 col-xs-12">
+    <div class="tournament-tile col-lg-4 col-md-6 col-sm-6 col-xs-12" ng-if="htTournament.tournament.schedule.length > 0">
       <div class="inner panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Schedule</h3>
         </div>
-        <div class="panel-body" ng-switch="myTournamentsTile.tournament.status">
+        <div class="panel-body" >
           <ht-my-tournaments-mini-schedule tournament="htTournament.tournament"></ht-my-tournaments-mini-schedule>
 
           <div class="footer">
@@ -36,12 +39,14 @@
       </div>
     </div>
 
-    <div class="tournament-tile col-lg-4 col-md-6 col-sm-6 col-xs-12">
+
+
+    <div class="tournament-tile col-lg-4 col-md-6 col-sm-6 col-xs-12" ng-if="htTournament.tournament.schedule.length > 0">
       <div class="inner panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Table</h3>
         </div>
-        <div class="panel-body" ng-switch="myTournamentsTile.tournament.status">
+        <div class="panel-body">
           <ht-my-tournaments-mini-table tournament="htTournament.tournament"></ht-my-tournaments-mini-table>
 
           <div class="footer">
@@ -54,19 +59,84 @@
       </div>
     </div>
 
+
+    <div class="tournament-tile col-lg-4 col-md-6 col-sm-6 col-xs-12" ng-if="htTournament.tournament.status < 2">
+      <div class="inner panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            Teams
+            <span class="badge">{{htTournament.tournament.teams.length}}</span>
+          </h3>
+        </div>
+        <div class="panel-body" >
+          <ht-tournament-mini-teams tournament="htTournament.tournament"></ht-tournament-mini-teams>
+
+          <div class="footer">
+
+            <!--<button class="btn btn-primary" ui-sref="admin.tournamentTeams">Register a Team</button>-->
+            <button class="btn btn-default" ui-sref="admin.tournamentTeams({id:htTournament.tournament.id})">
+              <i class="fa fa-chevron-right"></i>
+            </button>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
     <div class="tournament-tile col-lg-4 col-md-6 col-sm-6 col-xs-12">
       <div class="inner panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Settings</h3>
         </div>
-        <div class="panel-body" ng-switch="myTournamentsTile.tournament.status">
+        <div class="panel-body">
+
+          <div>
+            <h2>
+              <i class="fa fa-table" style="font-size: 1.2em"></i>
+              <span style="padding-left: 15px;">Liga</span>
+            </h2>
+          </div>
+
+          <div style="padding-top: 5px;">
+            <p>{{htTournament.tournament.description}}</p>
+          </div>
 
 
 
           <div class="footer">
-            <button class="btn btn-default" title="Open event"
-                    ui-sref="admin.schedule({id:htTournament.tournament.id})">
-              <i class="fa fa-chevron-right"></i>
+
+            <button class="btn btn-default">
+              <i class="fa fa-pencil"></i>
+              Edit
+            </button>
+
+            <!--<button class="btn btn-default" title="Open event"-->
+                    <!--ui-sref="admin.schedule({id:htTournament.tournament.id})">-->
+              <!--<i class="fa fa-chevron-right"></i>-->
+            <!--</button>-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="tournament-tile col-lg-4 col-md-6 col-sm-6 col-xs-12" ng-if="htTournament.tournament.schedule.length === 0">
+      <div class="inner panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Generator</h3>
+        </div>
+        <div class="panel-body" >
+
+          <div style="text-align: center; padding-top: 20px;">
+            <i class="fa fa-magic" style="font-size: 8em;"></i>
+          </div>
+
+          <div class="footer">
+            <button class="btn btn-primary" >
+              Generate Schedule
             </button>
           </div>
         </div>
@@ -74,6 +144,7 @@
     </div>
 
 
+<!--<pre>{{htTournament.tournament|json}}</pre>-->
 
 
   </div>

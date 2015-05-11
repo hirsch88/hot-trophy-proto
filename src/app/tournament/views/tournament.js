@@ -54,8 +54,11 @@
   function htTournamentController($stateParams, htTournaments) {
     var vm = this;
 
-
     vm.tournament = htTournaments.get($stateParams.id);
+
+    vm.formatDate = function (date) {
+      return date.format('D. MMMM YYYY');
+    };
 
     // code goes here...
 

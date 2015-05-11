@@ -1,0 +1,159 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-8">
+      <h1>
+        {{htTournamentTeams.tournament.name}}
+        <small>
+          <ht-tournament-status status="htTournamentTeams.tournament.status"></ht-tournament-status>
+          <span style="padding-left: 15px;">{{htTournamentTeams.formatDate(htTournamentTeams.tournament.date)}}</span>
+        </small>
+      </h1>
+    </div>
+    <div class="col-sm-4">
+      <button class="btn btn-default pull-right" title="Close" style="margin-top: 20px;"
+              ui-sref="admin.tournament({id:htTournamentTeams.tournament.id})">
+        <i class="fa fa-close"></i>
+        Close
+      </button>
+    </div>
+  </div>
+
+  <hr class="lined"/>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <h2>
+        Teams
+        <span class="badge">{{htTournamentTeams.tournament.teams.length}}</span>
+      </h2>
+    </div>
+    <div class="col-sm-4">
+      <button class="btn btn-primary pull-right" title="Add new Team" style="margin-top: 20px;"
+              ng-hide="htTournamentTeams.createRowIsOpen" ng-click="htTournamentTeams.createRowIsOpen = true; htTournamentTeams.msgDelete = false">
+        <i class="fa fa-plus"></i>
+        Add new Team
+      </button>
+    </div>
+
+  </div>
+
+  <div class="row" ng-show="htTournamentTeams.msgDelete">
+    <div class="col-sm-12 alert alert-success" role="alert">
+      <strong>The team was successfully deleted!</strong>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <form class="form-horizontal" name="htTournamentTeams.form" novalidate>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Icon</th>
+            <th>Name</th>
+            <th>Captain</th>
+            <th>Date</th>
+            <th></th>
+          </tr>
+          </thead>
+
+          <tbody>
+
+          <tr class="active" ng-show="htTournamentTeams.createRowIsOpen">
+
+            <td style="padding-top: 25px; padding-bottom: 25px;">
+              <input type="text" class="form-control" ng-required="true" id="inputIcon" name="icon"
+                     placeholder="Iconclass like 'fa-user-md'" ng-model="htTournamentTeams.icon">
+            </td>
+            <td style="padding-top: 25px; padding-bottom: 25px;">
+              <input type="text" class="form-control" ng-required="true" id="inputName" name="name"
+                     placeholder="Teamname" ng-model="htTournamentTeams.name">
+            </td>
+            <td style="padding-top: 25px; padding-bottom: 25px;">
+              <input type="text" class="form-control" ng-required="true" id="inputCaptain" name="captain"
+                     placeholder="Captain's Name" ng-model="htTournamentTeams.captain">
+            </td>
+            <td style="padding-top: 25px; padding-bottom: 25px;">
+              <input type="text" class="form-control" ng-required="true" id="inputDate" name="date" ng-disabled="true"
+                     placeholder="dd.mm.yyyy" ng-model="htTournamentTeams.date">
+            </td>
+            <td style="padding-top: 25px; padding-bottom: 25px;">
+              <div class="pull-right">
+                <button class="btn btn-md btn-default" title="Cancel" ng-click="htTournamentTeams.cancel()">
+                  <i class="fa fa-close"></i>
+                  Cancel
+                </button>
+                <button ng-click="htTournamentTeams.save()" class="btn btn-md btn-primary" title="Save" ng-disabled="htTournamentTeams.form.$invalid">
+                  <i class="fa fa-save"></i>
+                  Save
+                </button>
+              </div>
+            </td>
+
+          </tr>
+          </tbody>
+
+
+          <tbody>
+          <tr ng-repeat="team in htTournamentTeams.tournament.teams"
+              ng-class="{success: htTournamentTeams.addedTeamName=== team.name }">
+            <td><i class="fa" ng-class="team.icon" style="font-size: 28px"></i></td>
+            <td>{{team.name}}</td>
+            <td>{{team.captain}}</td>
+            <td>{{htTournamentTeams.formatDate(team.date)}}</td>
+            <td>
+              <div class="pull-right">
+                <button class="btn btn-sm btn-primary" title="Edit">
+                  <i class="fa fa-pencil"></i>
+                  Edit
+                </button>
+                <button class="btn btn-sm btn-danger" title="Delete" ng-click="htTournamentTeams.openDeleteConf(team)" >
+                  <i class="fa fa-trash-o"></i>
+                  Delete
+                </button>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+
+        </table>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Delete Teame</h4>
+        </div>
+        <div class="modal-body">
+          <table>
+            <tr>
+              <td width="80px"><i class="fa fa-trash-o" style="font-size: 4em"></i></td>
+              <td><p>Are you sure you want to delete <b>{{htTournamentTeams.teamToDelete.name}}</b></p></td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            <i class="fa fa-close"></i>
+            Cancel</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="htTournamentTeams.delete()">
+            Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
+
+

@@ -58,6 +58,25 @@
 
     }
 
+    Event.prototype.getTeams = function () {
+      return this.teams;
+    };
+
+    Event.prototype.removeTeam = function (teamToRemove) {
+      this.teams = _(this.teams).remove(function (team) {
+        return team.name !== teamToRemove.name;
+      }).value();
+      return this.teams;
+    };
+
+    Event.prototype.setTeam = function (newTeam) {
+      if(!_.isArray(this.teams)){
+        this.teams = [];
+      }
+      this.teams.push(newTeam);
+      return this.teams;
+    };
+
     /**
      *
      */

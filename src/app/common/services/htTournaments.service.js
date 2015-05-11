@@ -30,12 +30,12 @@
     var list = [];
 
     create('FIFA Tournament 2015', moment(), EVENT_STATUS_ACTIVE, [
-      {id: 1, name: 'Rockets', icon: 'fa-rocket'},
-      {id: 2, name: 'Diamonds', icon: 'fa-diamond'},
-      {id: 3, name: 'Empire', icon: 'fa-empire'},
-      {id: 4, name: 'Jets', icon: 'fa-fighter-jet'},
-      {id: 5, name: 'Rebels', icon: ' fa-rebel'}
-    ]);
+      {id: 1, name: 'Rockets', icon: 'fa-rocket', date: moment().days(-10), captain: 'John Diggle'},
+      {id: 2, name: 'Diamonds', icon: 'fa-diamond', date: moment().days(-26), captain: 'Barry Allan'},
+      {id: 3, name: 'Empire', icon: 'fa-empire', date: moment().days(-13), captain: 'Oliver Queen'},
+      {id: 4, name: 'Jets', icon: 'fa-fighter-jet', date: moment().days(-33), captain: 'Bruce Wayne'},
+      {id: 5, name: 'Rebels', icon: ' fa-rebel', date: moment().days(-30), captain: 'Tony Stark'}
+    ], 'This is a EA FIFA15 game tournament. One game duration is about 6 min');
     list[0].generateSchedule();
 
     list[0].schedule[0][0].scoreHome = 0;
@@ -49,17 +49,17 @@
 
 
     create('Soccer Event', moment().days(10), EVENT_STATUS_READY, [
-      {id: 1, name: 'Pinguins', icon: ' fa-linux'},
-      {id: 2, name: 'Appels', icon: 'fa-apple'},
-      {id: 3, name: 'Birds', icon: 'fa-twitter'},
-      {id: 4, name: 'Stars', icon: 'fa-star'}
-    ]);
+      {id: 1, name: 'Pinguins', icon: ' fa-linux', date: moment().days(-10), captain: 'Barry Allan'},
+      {id: 2, name: 'Appels', icon: 'fa-apple', date: moment().days(-22), captain: 'Oliver Queen'},
+      {id: 3, name: 'Birds', icon: 'fa-twitter', date: moment().days(-23), captain: 'Oliver Queen'},
+      {id: 4, name: 'Stars', icon: 'fa-star', date: moment().days(-23), captain: 'Tony Stark'}
+    ], 'The Seattle soccer club sportsday');
     list[1].generateSchedule();
 
     create('Medical Sports Day', moment().days(30), EVENT_STATUS_OPEN, [
-      {id: 1, name: 'Heartbreakers', icon: 'fa-heartbeat'},
-      {id: 2, name: 'Ambulance', icon: 'fa-ambulance'}
-    ]);
+      {id: 1, name: 'Heartbreakers', icon: 'fa-heartbeat', date: moment().days(-23), captain: 'Barry Allan'},
+      {id: 2, name: 'Ambulance', icon: 'fa-ambulance', date: moment().days(-10), captain: 'Oliver Queen'}
+    ], 'Our hospital has a sportsday now. We will play at the chelsea sport center');
 
 
     var service = {
@@ -90,9 +90,9 @@
       );
     }
 
-    function create(name, date, status, teams) {
+    function create(name, date, status, teams, description) {
       list.push(
-        new htTournamentModel(name, date, status, teams)
+        new htTournamentModel(name, date, status, teams, description)
       );
     }
 

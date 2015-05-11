@@ -6995,3 +6995,6 @@ form .validation-messages {
   vertical-align: super;
   font-size: 1.2em;
 }
+.modal {
+  z-index: 1041;
+}

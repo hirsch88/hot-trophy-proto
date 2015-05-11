@@ -6,11 +6,12 @@
     .run(AppRun);
 
 
-  function AppRun($rootScope, logger, $state, $stateParams, $location) {
+  function AppRun($rootScope, logger, $state, $stateParams, $location, $window) {
     var log = logger('AppRun');
 
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
+    $rootScope.navigateBack = $window.history.back();
 
     $rootScope.signedInUser = false;
 

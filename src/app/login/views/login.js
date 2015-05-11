@@ -68,6 +68,7 @@
     ////////////////////////
 
     function signIn() {
+      vm.alertForSuccessfulRegistration = false;
 
       if (vm.username === 'Marc' && vm.password === '1234') {
         vm.hasFailed = false;

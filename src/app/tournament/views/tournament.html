@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-sm-10">
+    <div class="col-sm-8">
       <h1>
         {{htTournament.tournament.name}}
         <small>
@@ -9,6 +9,13 @@
           <span style="padding-left: 15px;">{{htTournament.formatDate(htTournament.tournament.date)}}</span>
         </small>
       </h1>
+    </div>
+    <div class="col-sm-4">
+      <button class="btn btn-default pull-right" title="Close" style="margin-top: 20px;"
+              ui-sref="admin.myTournaments()">
+        <i class="fa fa-close"></i>
+        Close
+      </button>
     </div>
     <!--<div class="col-sm-2">-->
     <!--<button class="btn btn-danger pull-right" style="margin-top: 25px">-->

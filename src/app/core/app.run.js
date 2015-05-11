@@ -11,7 +11,7 @@
 
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
-    $rootScope.navigateBack = $window.history.back();
+    $rootScope.navigateBack = $window.history.back;
 
     $rootScope.signedInUser = false;
 

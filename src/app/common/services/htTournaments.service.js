@@ -13,161 +13,6 @@
     .constant('EVENT_STATUS_ARCHIVE', 3)
     .factory('htTournaments', htTournamentsService);
 
-  function Event(name, date, status, teams) {
-    this.name = name || '';
-    this.date = date || new Date();
-    this.status = status || 0;
-
-    this.teams = teams;
-    this.schedule = [];
-  }
-
-  Event.prototype.generateSchedule = function () {
-    this.schedule = RoundRobin(this.teams.length, this.teams);
-
-    this.schedule = _(this.schedule)
-      .map(function (round) {
-        round[0].scoreHome = null;
-        round[0].scoreAway = null;
-        round[1].scoreHome = null;
-        round[1].scoreAway = null;
-        return round;
-      })
-      .value();
-
-  };
-
-  Event.prototype.getTable = function () {
-    var table = [];
-    var self = this;
-    var rank = 1;
-    var previousRow;
-
-    _.forEach(self.teams, function (team) {
-      table.push({
-        team: team,
-        rank: 1,
-        ply:  0,
-        pts:  0,
-        win:  0,
-        draw: 0,
-        lose: 0,
-        gp:   0,
-        gn:   0
-      });
-    });
-
-    table = _(table)
-      .map(function (row) {
-
-        // played
-        row.ply = _.countBy(self.schedule, function (round) {
-            return (round[0][0].id === row.team.id || round[0][1].id === row.team.id ) && round[0].scoreHome !== null ||
-              (round[1][0].id === row.team.id || round[1][1].id === row.team.id ) && round[1].scoreHome !== null;
-          }).true || 0;
-
-        // goals
-        _(self.schedule)
-          .filter(function (round) {
-            return (round[0][0].id === row.team.id || round[0][1].id === row.team.id) && round[0].scoreHome !== null;
-          })
-          .map(function (round) {
-
-            var teams = [];
-            teams.push(round[0][0].id);
-            teams.push(round[0][1].id);
-            teams.push(round[1][0].id);
-            teams.push(round[1][1].id);
-
-            var index = _.indexOf(teams, row.team.id);
-
-            var roundIndex = 0;
-            var sideIndex = 0;
-            switch (index) {
-              // 1st Round
-              case 0: // Home
-                roundIndex = 0;
-                sideIndex = 0;
-                break;
-
-              case 1: // Away
-                roundIndex = 0;
-                sideIndex = 1;
-                break;
-
-              // 2nd Round
-              case 2: // Home
-                roundIndex = 1;
-                sideIndex = 0;
-                break;
-
-              case 3:// Away
-                roundIndex = 1;
-                sideIndex = 1;
-                break;
-            }
-
-            function reverseSide(sideIndex) {
-              return (sideIndex === 0) ? 1 : 0;
-            }
-
-            function reverseScore(sideIndex) {
-              return (sideIndex === 0) ? 'scoreAway' : 'scoreHome';
-            }
-
-            function getScore(sideIndex) {
-              return (sideIndex === 1) ? 'scoreAway' : 'scoreHome';
-            }
-
-
-            if (index >= 0) {
-
-              // Goals
-              row.gp += round[roundIndex][getScore(sideIndex)]; //( round[roundIndex][sideIndex].score !== null ) ? round[roundIndex][sideIndex].score : 0;
-              row.gn += round[roundIndex][reverseSide(sideIndex)].score; //( round[roundIndex][sideIndex].score !== null ) ? round[roundIndex][sideIndex].score : 0;
-
-              // Loses
-              row.lose += ( round[roundIndex][getScore(sideIndex)] < round[roundIndex][reverseScore(sideIndex)] ) ? 1 : 0;
-
-              // Draws
-              row.draw += ( round[roundIndex][getScore(sideIndex)] === round[roundIndex][reverseScore(sideIndex)] ) ? 1 : 0;
-
-              // Wins
-              row.win += ( round[roundIndex][getScore(sideIndex)] > round[roundIndex][reverseScore(sideIndex)] ) ? 1 : 0;
-
-              // Points
-              if (round[roundIndex][getScore(sideIndex)] > round[roundIndex][reverseScore(sideIndex)]) {
-                row.pts += 3;
-              } else if (round[roundIndex][getScore(sideIndex)] === round[roundIndex][reverseScore(sideIndex)]) {
-                row.pts += 1;
-              }
-
-            }
-
-          })
-          .value();
-
-        return row;
-      })
-      .sortByOrder(['pts','gp','gn'], [false, false, true])
-      .map(function (row) {
-        row.rank = rank;
-
-        if (previousRow && previousRow.pts > row.pts) {
-          row.rank++;
-        }
-
-        previousRow = row;
-        rank = row.rank;
-        return row;
-      })
-      .value();
-
-    console.log(table);
-
-    return table;
-  };
-
   /**
    * @memberOf common
    * @namespace common.service.tournaments
@@ -180,7 +25,7 @@
    * offen + anmelung
    *
    */
-  function htTournamentsService(EVENT_STATUS_OPEN, EVENT_STATUS_READY, EVENT_STATUS_ACTIVE) {
+  function htTournamentsService(htTournamentModel, EVENT_STATUS_OPEN, EVENT_STATUS_READY, EVENT_STATUS_ACTIVE) {
 
     var list = [];
 
@@ -219,7 +64,9 @@
 
     var service = {
       getAll: getAll,
-      create: create
+      get:    read,
+      create: create,
+      add:    add
     };
 
     return service;
@@ -230,9 +77,22 @@
       return list;
     }
 
+    function read(id) {
+      id = parseInt(id, 10);
+      return _(list)
+        .findWhere({id: id});
+      //.value();
+    }
+
+    function add(obj) {
+      list.push(
+        new htTournamentModel(obj)
+      );
+    }
+
     function create(name, date, status, teams) {
       list.push(
-        new Event(name, date, status, teams)
+        new htTournamentModel(name, date, status, teams)
       );
     }
 

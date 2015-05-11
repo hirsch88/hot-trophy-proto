@@ -26,7 +26,7 @@
       templateUrl:      'app/layout/directives/header.directive.html',
       controller:       HeaderController,
       controllerAs:     'htHeader',
-      link: link,
+      link:             link,
       bindToController: true // because the scope is isolated
     }
   }

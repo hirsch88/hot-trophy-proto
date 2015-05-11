@@ -9,9 +9,7 @@
   'use strict';
 
   angular
-    .module('home.home',[
-
-    ])
+    .module('home.home', [])
     .config(StateConfig)
     .controller('htHomeController', htHomeController);
 
@@ -22,9 +20,10 @@
         session:       true,
         navigationKey: 'home',
         header:        {
-          signIn:        true,
-          profile:       false,
-          myTournaments: false
+          signIn:           true,
+          profile:          false,
+          myTournaments:    false,
+          createTournament: false
         },
         views:         {
           'content': {
@@ -44,10 +43,11 @@
    * @param members {Object}
    * @constructor
    */
-  function htHomeController($state) {
+  function htHomeController($state, $rootScope) {
     var vm = this;
     vm.title = AppUtil.title;
 
+    vm.registerForm = {};
 
     vm.username = '';
     vm.email = '';
@@ -55,10 +55,14 @@
 
     vm.register = register;
 
+    $rootScope.thereWasARegistration = false;
+
     ///////////////////////////////
 
     function register() {
-      $state.go('admin.myTournamentsList');
+      $rootScope.thereWasARegistration = true;
+      $state.go('public.login');
+
     }
 
 

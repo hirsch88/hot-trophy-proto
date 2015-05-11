@@ -29,9 +29,10 @@
         url:           '/login',
         session:       true,
         header:        {
-          signIn:        false,
-          profile:       false,
-          myTournaments: false
+          signIn:           false,
+          profile:          false,
+          myTournaments:    false,
+          createTournament: false
         },
         navigationKey: 'login',
         views:         {
@@ -50,15 +51,19 @@
    * @memberOf login.login
    * @name LoginLoginController
    */
-  function htLoginController($state) {
+  function htLoginController($state, $rootScope, $scope) {
     var vm = this;
 
     vm.form = {};
     vm.username = '';
     vm.password = '';
     vm.hasFailed = false;
-
     vm.signIn = signIn;
+    vm.alertForSuccessfulRegistration = false;
+    if ($rootScope.thereWasARegistration) {
+      vm.alertForSuccessfulRegistration = true;
+      $scope.$apply(vm.alertForSuccessfulRegistration);
+    }
 
     ////////////////////////
 
@@ -66,6 +71,10 @@
 
       if (vm.username === 'Marc' && vm.password === '1234') {
         vm.hasFailed = false;
+        $rootScope.signedInUser = {
+          username: vm.username,
+          password: vm.password
+        };
         $state.go('admin.myTournaments');
 
       } else {

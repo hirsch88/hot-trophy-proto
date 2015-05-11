@@ -1,0 +1,107 @@
+<div class="container" style="padding-top: 40px;">
+
+  <div class="row">
+    <div class="well col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12">
+      <form class="form-horizontal" name="htCreateNewTournamentForm.form" novalidate>
+        <fieldset>
+          <legend>New Tournament</legend>
+
+          <div class="form-group">
+            <label for="inputName" class="col-lg-2 control-label">Name*</label>
+
+            <div class="col-lg-10">
+              <input type="text" class="form-control" ng-required="true" id="inputName" name="name"
+                     placeholder="Enter a name for your tournament" ng-model="htCreateNewTournamentForm.name">
+              <ng-messages for="htCreateNewTournamentForm.form.name.$error" role="alert" ng-show="htCreateNewTournamentForm.form.name.$dirty">
+                <ng-message when="required">This field is required</ng-message>
+              </ng-messages>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="textDescription" class="col-lg-2 control-label">Description</label>
+
+            <div class="col-lg-10">
+            <textarea class="form-control" rows="3" id="textDescription"
+                      ng-model="htCreateNewTournamentForm.description"></textarea>
+              <!--<span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>-->
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputDate" class="col-lg-2 control-label">Date</label>
+
+            <div class="col-lg-10">
+              <datepicker id="inputDate" ng-model="htCreateNewTournamentForm.date" show-weeks="true"></datepicker>
+
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Settings</legend>
+
+
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Modus</label>
+
+            <div class="col-lg-10">
+              <div class="btn-group">
+                <label class="btn btn-default" ng-model="htCreateNewTournamentForm.modus" btn-radio="'Liga'">
+                  <i class="fa fa-table"></i>
+                  Liga
+                </label>
+                <label class="btn btn-default" ng-model="htCreateNewTournamentForm.modus" btn-radio="'KO'">
+                  <i class="fa fa-user"></i>
+                  <i class="fa fa-user"></i>
+                  KO.
+                </label>
+                <label class="btn btn-default" ng-model="htCreateNewTournamentForm.modus" btn-radio="'KO/Group'">
+                  <i class="fa fa-group"></i>
+                  Groups & KO.
+                </label>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="form-group" style="padding-top: 25px;">
+            <label for="inputAmount" class="col-lg-2 control-label">Amount of Teams</label>
+
+            <div class="col-lg-10">
+              <table>
+                <tr>
+                  <td width="45px" style="text-align: left"><b>2</b></td>
+                  <td>
+                    <slider sliderid="inputAmount" tooltip="always" ng-model="htCreateNewTournamentForm.amount" min="2"
+                            step="1" max="30" value="testOptions.value"></slider>
+                  </td>
+                  <td width="45px" style="text-align: right"><b>30</b></td>
+                </tr>
+              </table>
+
+            </div>
+          </div>
+
+
+        </fieldset>
+
+        <hr class="lined"/>
+        <fieldset>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <button type="submit" class="btn btn-primary" ng-click="htCreateNewTournamentForm.save()" ng-disabled="htCreateNewTournamentForm.form.$invalid">
+                <i class="fa fa-save"></i>
+                Save
+              </button>
+              <button type="reset" class="btn btn-default" ui-sref="admin.myTournaments">Cancel</button>
+            </div>
+          </div>
+        </fieldset>
+
+      </form>
+    </div>
+
+  </div>
+</div>

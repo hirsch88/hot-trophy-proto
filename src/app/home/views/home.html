@@ -22,33 +22,41 @@
 
       <div class="col-md-6" style="margin-top: 120px;">
 
-        <form name="home.loginForm" class="login-form">
+        <form name="htHome.registerForm" class="login-form" novalidate>
 
-          <!--<div class="well">-->
 
           <div class="form-group">
-            <!--<label for="exampleInputPassword1">Password</label>-->
-            <input class="form-control" type="text" placeholder="Pick a username">
+            <input ng-model="htHome.username" name="username" class="form-control" ng-required="true" type="text" placeholder="Pick a username">
+            <ng-messages for="htHome.registerForm.username.$error" role="alert" ng-show="htHome.registerForm.username.$dirty">
+              <ng-message when="required">This field is required</ng-message>
+            </ng-messages>
           </div>
 
           <div class="form-group">
-            <!--<label for="exampleInputPassword1">Password</label>-->
-            <input class="form-control" type="text" placeholder="Your Email">
+            <input name="email" ng-model="htHome.email" class="form-control" ng-required="true" type="email" placeholder="Your Email">
+            <ng-messages for="htHome.registerForm.email.$error" role="alert" ng-show="htHome.registerForm.email.$dirty">
+              <ng-message when="required">This field is required</ng-message>
+              <ng-message when="email">This is not a valid email address</ng-message>
+            </ng-messages>
           </div>
 
           <div class="form-group">
-            <!--<label for="exampleInputPassword1">Password</label>-->
-            <input class="form-control" type="password" placeholder="Create a password">
+            <input name="password" ng-model="htHome.password" ng-minlength="4" ng-required="true" class="form-control" type="password" placeholder="Create a password">
+            <ng-messages for="htHome.registerForm.password.$error" role="alert" ng-show="htHome.registerForm.password.$dirty">
+              <ng-message when="required">This field is required</ng-message>
+              <ng-message when="minlength">The minimum length is 4</ng-message>
+            </ng-messages>
           </div>
 
 
           <br/>
-          <!--<button class="btn btn-primary">Sign up for hotTrophy</button>-->
-          <button class="btn btn-lg btn-primary" style="width: 200px" ng-click="htHome.register()">Sign up</button>
 
-          <!--</div>-->
+
+          <button ng-disabled="htHome.registerForm.$invalid" class="btn btn-lg btn-primary" style="width: 200px" ng-click="htHome.register()">Sign up</button>
+
 
         </form>
+
 
       </div>
 

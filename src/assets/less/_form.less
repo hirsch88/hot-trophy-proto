@@ -1,0 +1,35 @@
+form{
+
+  select.ng-invalid.ng-dirty,
+  textarea.ng-invalid.ng-dirty,
+  input.ng-invalid.ng-dirty
+  {
+    border-color: @brand-danger;
+    outline-color: @brand-danger;
+    background: lighten(@brand-danger, 45%);
+  }
+
+  select.ng-valid.ng-dirty,
+  textarea.ng-valid.ng-dirty,
+  input.ng-valid.ng-dirty
+  {
+    border-color: @brand-success;
+    outline-color: @brand-success;
+  }
+
+  ng-messages, .validation-messages{
+    margin-top: 5px;
+    display: block;
+    position: relative;
+    margin-bottom: 10px;
+    color: @brand-danger;
+  }
+
+}
+
+.form-control:focus {
+  border-color: @brand-info;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(41, 199, 171, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(41, 199, 171, 0.6);
+}

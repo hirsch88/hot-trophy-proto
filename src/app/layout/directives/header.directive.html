@@ -20,7 +20,7 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
 
-      <ul class="nav navbar-nav pull-right" ng-show="$state.$current.header.profile && htHeader.isAdminSection()">
+      <ul class="nav navbar-nav pull-right" ng-show="signedInUser !== false">
 
         <li ng-show="$state.$current.header.myTournaments">
           <a ui-sref="admin.myTournaments">
@@ -48,15 +48,15 @@
 
       </ul>
 
-      <form class="navbar-form navbar-right" role="create" ng-show="htHeader.isAdminSection()" style="margin-right: 80px;">
-        <button class="btn btn-primary" ui-sref="public.login">
+      <form class="navbar-form" role="create" ng-show="htHeader.isAdminSection() && $state.$current.header.createTournament" style="margin-left: 300px;">
+        <button class="btn btn-primary" ui-sref="admin.CreateNewTournamentForm">
           <i class="fa fa-plus"></i>
-          Create
+          Create a new Tournament
         </button>
       </form>
 
 
-      <form ng-show="$state.$current.header.signIn"  class="navbar-form navbar-right" role="signIn" >
+      <form ng-show="$state.$current.header.signIn && signedInUser === false"  class="navbar-form navbar-right" role="signIn" >
         <button class="btn btn-primary" ui-sref="public.login">
           Sign In
         </button>

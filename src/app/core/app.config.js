@@ -10,7 +10,9 @@
 
   angular
     .module('app.config', [
-      'pascalprecht.translate'
+      'pascalprecht.translate',
+      'ui.bootstrap',
+      'ui.bootstrap-slider'
     ])
     .config(TranslateConfig);
 

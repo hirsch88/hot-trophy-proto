@@ -26,11 +26,14 @@
       'layout',
 
       'common.service.htTournaments',
+      'common.model.htTournaments',
 
       // App modules with business logic
       'home',
       'login',
-      'myTournaments'
+      'myTournaments',
+      'tournament',
+      'createNewTournament'
 
 
 

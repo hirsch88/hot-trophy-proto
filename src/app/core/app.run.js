@@ -6,16 +6,22 @@
     .run(AppRun);
 
 
-  function AppRun($rootScope, logger, $state, $stateParams) {
+  function AppRun($rootScope, logger, $state, $stateParams, $location) {
     var log = logger('AppRun');
 
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
+    $rootScope.signedInUser = false;
 
-    $rootScope.header = {
-      hasSignIn: true
-    };
+    $rootScope.isMaster = $location.search().user === 'Marc' || false;
+
+    if ($rootScope.isMaster) {
+      $rootScope.signedInUser = {
+        username: 'Marc',
+        password: '1234'
+      };
+    }
 
   }
 

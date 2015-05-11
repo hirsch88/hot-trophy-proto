@@ -21,6 +21,7 @@
   <!-- bower:css -->
   <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="lib/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css">
   <!-- endinject -->
 
   <!-- inject:css -->
@@ -45,33 +46,42 @@
 <script src="lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
 <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="lib/restangular/dist/restangular.js"></script>
+<script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="lib/seiyria-bootstrap-slider/js/bootstrap-slider.js"></script>
+<script src="lib/angular-bootstrap-slider/slider.js"></script>
 <!-- endinject -->
 
 <!-- inject:js -->
 <script src="app/app.js"></script>
 <script src="app/core/app.config.js"></script>
 <script src="app/core/app.core.js"></script>
+<script src="app/core/app.events.js"></script>
 <script src="app/core/app.logger.js"></script>
 <script src="app/core/app.router.js"></script>
 <script src="app/core/app.run.js"></script>
 <script src="app/core/app.util.js"></script>
+<script src="app/common/models/htTournaments.model.js"></script>
 <script src="app/common/services/htTournaments.service.js"></script>
-<script src="app/dashbaord/dashbaord.module.js"></script>
+<script src="app/createNewTournament/createNewTournament.module.js"></script>
 <script src="app/home/home.module.js"></script>
 <script src="app/layout/layout.module.js"></script>
 <script src="app/login/login.module.js"></script>
 <script src="app/myTournaments/myTournaments.module.js"></script>
-<script src="app/dashbaord/views/dashboard.js"></script>
+<script src="app/tournament/tournament.module.js"></script>
+<script src="app/createNewTournament/views/form.js"></script>
 <script src="app/home/views/home.js"></script>
 <script src="app/layout/directives/header.directive.js"></script>
 <script src="app/layout/views/admin.js"></script>
 <script src="app/layout/views/public.js"></script>
 <script src="app/login/views/login.js"></script>
 <script src="app/myTournaments/views/myTournaments.js"></script>
+<script src="app/tournament/views/tournament.js"></script>
 <script src="app/myTournaments/common/directives/htMyTournamentsMiniSchedule.directive.js"></script>
 <script src="app/myTournaments/common/directives/htMyTournamentsMiniTable.directive.js"></script>
 <script src="app/myTournaments/common/directives/htMyTournamentsStatus.directive.js"></script>
 <script src="app/myTournaments/common/directives/htMyTournamentsTile.directive.js"></script>
+<script src="app/tournament/common/directives/htTournamentMiniSchedule.directive.js"></script>
+<script src="app/tournament/common/directives/htTournamentMiniTable.directive.js"></script>
 <!-- endinject -->
 
 </body>

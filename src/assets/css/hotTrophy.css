@@ -6916,35 +6916,69 @@ form.login-form input {
 .feature .feature-items .fa-stack .fa-stack-1x {
   font-size: 2.5em;
 }
-.my-tournaments-tile {
+.my-tournaments-tile,
+.tournament-tile {
   height: 300px;
   padding: 15px;
 }
-.my-tournaments-tile > .inner {
+.my-tournaments-tile > .inner,
+.tournament-tile > .inner {
   height: 100%;
   width: 100%;
 }
-.my-tournaments-tile ht-my-tournaments-status {
+.my-tournaments-tile ht-my-tournaments-status,
+.tournament-tile ht-my-tournaments-status {
   position: absolute;
   right: 30px;
   top: 24px;
 }
-.my-tournaments-tile .footer {
+.my-tournaments-tile .footer,
+.tournament-tile .footer {
   position: absolute;
   bottom: 30px;
   right: 30px;
 }
-.my-tournaments-tile .table td {
+.my-tournaments-tile .table td,
+.tournament-tile .table td {
   line-height: 2em;
 }
-.my-tournaments-tile .table td i {
+.my-tournaments-tile .table td i,
+.tournament-tile .table td i {
   font-size: 2em;
   width: 2em;
 }
-.my-tournaments-tile .table td span {
+.my-tournaments-tile .table td span,
+.tournament-tile .table td span {
   line-height: 2em;
   vertical-align: super;
   font-size: 1.2em;
+}
+form select.ng-invalid.ng-dirty,
+form textarea.ng-invalid.ng-dirty,
+form input.ng-invalid.ng-dirty {
+  border-color: #fa5151;
+  outline-color: #fa5151;
+  background: #ffffff;
+}
+form select.ng-valid.ng-dirty,
+form textarea.ng-valid.ng-dirty,
+form input.ng-valid.ng-dirty {
+  border-color: #29c7ab;
+  outline-color: #29c7ab;
+}
+form ng-messages,
+form .validation-messages {
+  margin-top: 5px;
+  display: block;
+  position: relative;
+  margin-bottom: 10px;
+  color: #fa5151;
+}
+.form-control:focus {
+  border-color: #3498db;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(41, 199, 171, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(41, 199, 171, 0.6);
 }
 .list {
   list-style: none;

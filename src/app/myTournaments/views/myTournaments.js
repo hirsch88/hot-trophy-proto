@@ -2,7 +2,7 @@
  * MyTournamentsList
  * @namespace myTournaments
  */
-(function() {
+(function () {
   'use strict';
 
   /**
@@ -14,9 +14,7 @@
    * Route: /tournaments
    */
   angular
-    .module('myTournaments.list', [
-
-    ])
+    .module('myTournaments.list', [])
     .config(StateConfig)
     .controller('htMyTournamentsController', htMyTournamentsController);
 
@@ -32,9 +30,10 @@
         session:       true,
         navigationKey: 'myTournaments',
         header:        {
-          signIn:        false,
-          profile:       true,
-          myTournaments: true
+          signIn:           false,
+          profile:          true,
+          myTournaments:    false,
+          createTournament: true
         },
         views:         {
           'content': {
@@ -52,9 +51,15 @@
    * @memberOf myTournaments.myTournamentsList
    * @name MyTournamentsMyTournamentsListController
    */
-  function htMyTournamentsController(htTournaments) {
+  function htMyTournamentsController(htTournaments, $rootScope) {
     var vm = this;
     vm.list = htTournaments.getAll();
+    vm.thereWasATournamentCreation = false;
+
+    if ($rootScope.thereWasATournamentCreation) {
+      vm.thereWasATournamentCreation = true;
+      $rootScope.thereWasATournamentCreation = false;
+    }
 
     ////////////////////////////////////////////////////
 

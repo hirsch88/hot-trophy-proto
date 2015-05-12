@@ -41,12 +41,17 @@
    *
    * @constructor
    */
-  function HeaderController($scope) {
+  function HeaderController($scope, $state, $rootScope) {
     var vm = this;
     vm.title = AppUtil.title;
 
     vm.isAdminSection = function () {
       return $scope.isAdmin;
+    };
+
+    vm.logout = function () {
+      $rootScope.signedInUser = false;
+      $state.go('public.login');
     };
 
   }

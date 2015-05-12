@@ -15,7 +15,9 @@
       'tournament.directive.htTournamentStatus',
 
       'tournament.tournament',
-      'tournament.teams'
+      'tournament.teams',
+      'tournament.table',
+      'tournament.schedule'
 
     ]);
 

@@ -27,6 +27,7 @@
 
       'common.service.htTournaments',
       'common.model.htTournaments',
+      'common.filter.htRevers',
 
       // App modules with business logic
       'home',

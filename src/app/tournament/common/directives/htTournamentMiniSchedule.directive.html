@@ -1,6 +1,8 @@
 <table class="table">
 
-  <tr ng-repeat="game in myTournamentsMiniSchedule.schedule | limitTo:3">
+
+
+  <tr ng-repeat="game in htTournamentMiniSchedule.schedule | htRevers | limitTo:3" ng-show="htTournamentMiniSchedule.tournament.status > 1">
 
     <td style="text-align: left">{{game[0].name}}</td>
     <td style="text-align: left" width="60px"><i class="fa" ng-class="game[0].icon"></i></td>
@@ -11,6 +13,17 @@
   </tr>
 
 
+  <tr ng-repeat="game in htTournamentMiniSchedule.scheduleReady | htRevers  | limitTo:3" ng-show="htTournamentMiniSchedule.tournament.status <= 1">
+
+    <td style="text-align: left">{{game[0].name}}</td>
+    <td style="text-align: left" width="60px"><i class="fa" ng-class="game[0].icon"></i></td>
+    <td style="text-align: center" width="60px"><span>VS.</span></td>
+    <td style="text-align: right" width="60px"><i class="fa" ng-class="game[1].icon"></i></td>
+    <td style="text-align: right">{{game[1].name}}</td>
+
+  </tr>
+
 
 </table>
+
 

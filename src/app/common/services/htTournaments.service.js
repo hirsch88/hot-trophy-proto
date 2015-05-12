@@ -38,14 +38,14 @@
     ], 'This is a EA FIFA15 game tournament. One game duration is about 6 min');
     list[0].generateSchedule();
 
-    list[0].schedule[0][0].scoreHome = 0;
+    list[0].schedule[0][0].scoreHome = 1;
     list[0].schedule[0][0].scoreAway = 4;
 
-    list[0].schedule[1][0].scoreHome = 1;
-    list[0].schedule[1][0].scoreAway = 2;
+    list[0].schedule[0][1].scoreHome = 0;
+    list[0].schedule[0][1].scoreAway = 2;
 
-    list[0].schedule[2][0].scoreHome = 1;
-    list[0].schedule[2][0].scoreAway = 1;
+    list[0].schedule[1][0].scoreHome = 1;
+    list[0].schedule[1][0].scoreAway = 1;
 
 
     create('Soccer Event', moment().days(10), EVENT_STATUS_READY, [
@@ -58,7 +58,9 @@
 
     create('Medical Sports Day', moment().days(30), EVENT_STATUS_OPEN, [
       {id: 1, name: 'Heartbreakers', icon: 'fa-heartbeat', date: moment().days(-23), captain: 'Barry Allan'},
-      {id: 2, name: 'Ambulance', icon: 'fa-ambulance', date: moment().days(-10), captain: 'Oliver Queen'}
+      {id: 2, name: 'Ambulance', icon: 'fa-ambulance', date: moment().days(-10), captain: 'Oliver Queen'},
+      {id: 3, name: 'Nurses', icon: 'fa-medkit', date: moment().days(-12), captain: 'Pepper Stark'},
+      {id: 4, name: 'Stars', icon: 'fa-star', date: moment().days(-12), captain: 'Tony Stark'}
     ], 'Our hospital has a sportsday now. We will play at the chelsea sport center');
 
 

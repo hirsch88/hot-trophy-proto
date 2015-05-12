@@ -34,11 +34,11 @@
           <h3 class="panel-title">Schedule</h3>
         </div>
         <div class="panel-body" >
-          <ht-my-tournaments-mini-schedule tournament="htTournament.tournament"></ht-my-tournaments-mini-schedule>
+          <ht-tournament-mini-schedule tournament="htTournament.tournament"></ht-tournament-mini-schedule>
 
           <div class="footer">
             <button class="btn btn-default" title="Open event"
-                    ui-sref="admin.schedule({id:htTournament.tournament.id})">
+                    ui-sref="admin.TournamentSchedule({id:htTournament.tournament.id})">
               <i class="fa fa-chevron-right"></i>
             </button>
           </div>
@@ -58,7 +58,7 @@
 
           <div class="footer">
             <button class="btn btn-default" title="Open event"
-                    ui-sref="admin.table({id:htTournament.tournament.id})">
+                    ui-sref="admin.TournamentTable({id:htTournament.tournament.id})">
               <i class="fa fa-chevron-right"></i>
             </button>
           </div>
@@ -142,7 +142,7 @@
           </div>
 
           <div class="footer">
-            <button class="btn btn-primary" >
+            <button class="btn btn-primary" ng-click="htTournament.generate(htTournament.tournament)">
               Generate Schedule
             </button>
           </div>

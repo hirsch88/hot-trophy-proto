@@ -29,11 +29,19 @@
       </h2>
     </div>
     <div class="col-sm-4">
-      <button class="btn btn-primary pull-right" title="Add new Team" style="margin-top: 20px;"
+      <div class="pull-right">
+      <button class="btn btn-primary" title="Add new Team" style="margin-top: 20px;"
               ng-hide="htTournamentTeams.createRowIsOpen" ng-click="htTournamentTeams.createRowIsOpen = true; htTournamentTeams.msgDelete = false">
         <i class="fa fa-plus"></i>
         Add new Team
       </button>
+
+      <button class="btn btn-primary" title="Add new Team" style="margin-top: 20px;"
+              ng-hide="htTournamentTeams.createRowIsOpen" ng-click="htTournamentTeams.createRowIsOpen = true; htTournamentTeams.msgDelete = false">
+        <i class="fa fa-envelope-o"></i>
+        Invited Team by Email
+      </button>
+      </div>
     </div>
 
   </div>

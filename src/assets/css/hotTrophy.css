@@ -1,7 +1,4 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:600,400|Roboto+Slab:400,700|Indie+Flower);
-body {
-  padding-bottom: 30px;
-}
 * {
   -webkit-font-smoothing: antialiased;
 }
@@ -6821,7 +6818,6 @@ button.close {
 .home-banner {
   background-color: #1d1821;
   width: 100%;
-  height: 500px;
 }
 .home-banner h1 {
   margin: 100px 0 0 0;
@@ -6893,15 +6889,17 @@ form.login-form .well {
 form.login-form input {
   height: 45px;
 }
+form.register-form .well {
+  background: #604575;
+  border: none;
+}
+form.register-form input {
+  height: 45px;
+}
 .feature h1 {
   text-align: center;
 }
 .feature .feature-items {
-  float: left;
-  width: 270px;
-  padding-top: 135px;
-  position: relative;
-  margin: 0 30px 60px 0;
   text-align: center;
 }
 .feature .feature-items .fa-stack {
@@ -6940,16 +6938,16 @@ form.login-form input {
 }
 .my-tournaments-tile .table td,
 .tournament-tile .table td {
-  line-height: 2em;
+  line-height: 1.6em;
 }
 .my-tournaments-tile .table td i,
 .tournament-tile .table td i {
-  font-size: 2em;
-  width: 2em;
+  font-size: 1.6em;
+  width: 1.6em;
 }
 .my-tournaments-tile .table td span,
 .tournament-tile .table td span {
-  line-height: 2em;
+  line-height: 1.6em;
   vertical-align: super;
   font-size: 1.2em;
 }
@@ -6998,3 +6996,36 @@ form .validation-messages {
 .modal {
   z-index: 1041;
 }
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+footer.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+}
+footer.footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: #1d1821;
+}
+footer.footer span,
+footer.footer a {
+  padding-right: 15px;
+  line-height: 2em;
+  vertical-align: middle;
+}
+footer.footer i.fa-trophy {
+  color: #956200;
+}
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */

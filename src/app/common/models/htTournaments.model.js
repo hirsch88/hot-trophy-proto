@@ -70,11 +70,16 @@
     };
 
     Event.prototype.setTeam = function (newTeam) {
-      if(!_.isArray(this.teams)){
+      if (!_.isArray(this.teams)) {
         this.teams = [];
       }
       this.teams.push(newTeam);
       return this.teams;
+    };
+
+
+    Event.prototype.setReady = function () {
+      this.status = EVENT_STATUS_READY;
     };
 
     /**
@@ -85,10 +90,18 @@
 
       this.schedule = _(this.schedule)
         .map(function (round) {
-          round[0].scoreHome = null;
-          round[0].scoreAway = null;
-          round[1].scoreHome = null;
-          round[1].scoreAway = null;
+          try {
+            round[0].scoreHome = null;
+            round[0].scoreAway = null;
+          } catch (e) {
+
+          }
+          try {
+            round[1].scoreHome = null;
+            round[1].scoreAway = null;
+          } catch (e) {
+
+          }
           return round;
         })
         .value();
@@ -131,7 +144,10 @@
           // goals
           _(self.schedule)
             .filter(function (round) {
-              return (round[0][0].id === row.team.id || round[0][1].id === row.team.id) && round[0].scoreHome !== null;
+              console.log(round);
+              var firstGame = (round[0][0].id === row.team.id || round[0][1].id === row.team.id ) && round[0].scoreHome !== null;
+              var secondGame = (round[1][0].id === row.team.id || round[1][1].id === row.team.id ) && round[1].scoreHome !== null;
+              return firstGame || secondGame;
             })
             .map(function (round) {
 
@@ -169,9 +185,9 @@
                   break;
               }
 
-              function reverseSide(sideIndex) {
-                return (sideIndex === 0) ? 1 : 0;
-              }
+              //function reverseSide(sideIndex) {
+              //  return (sideIndex === 0) ? 1 : 0;
+              //}
 
               function reverseScore(sideIndex) {
                 return (sideIndex === 0) ? 'scoreAway' : 'scoreHome';
@@ -186,7 +202,7 @@
 
                 // Goals
                 row.gp += round[roundIndex][getScore(sideIndex)]; //( round[roundIndex][sideIndex].score !== null ) ? round[roundIndex][sideIndex].score : 0;
-                row.gn += round[roundIndex][reverseSide(sideIndex)].score; //( round[roundIndex][sideIndex].score !== null ) ? round[roundIndex][sideIndex].score : 0;
+                row.gn += round[roundIndex][reverseScore(sideIndex)]; //( round[roundIndex][sideIndex].score !== null ) ? round[roundIndex][sideIndex].score : 0;
 
                 // Loses
                 row.lose += ( round[roundIndex][getScore(sideIndex)] < round[roundIndex][reverseScore(sideIndex)] ) ? 1 : 0;

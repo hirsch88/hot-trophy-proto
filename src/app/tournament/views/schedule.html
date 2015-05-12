@@ -1,0 +1,138 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-8">
+      <h1>
+        {{htTournamentSchedule.tournament.name}}
+        <small>
+          <ht-tournament-status status="htTournamentSchedule.tournament.status"></ht-tournament-status>
+          <span
+            style="padding-left: 15px;">{{htTournamentSchedule.formatDate(htTournamentSchedule.tournament.date)}}</span>
+        </small>
+      </h1>
+    </div>
+    <div class="col-sm-4">
+      <button class="btn btn-default pull-right" title="Close" style="margin-top: 20px;"
+              ui-sref="admin.tournament({id:htTournamentSchedule.tournament.id})">
+        <i class="fa fa-close"></i>
+        Close
+      </button>
+    </div>
+  </div>
+
+  <hr class="lined"/>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <h2>
+        Schedule
+      </h2>
+    </div>
+    <div class="col-sm-4">
+      <div class="pull-right">
+
+        <button class="btn btn-default" title="Print" style="margin-top: 20px;">
+          <i class="fa fa-print"></i>
+          Print
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row" ng-show="htTournamentSchedule.msgDelete">
+    <div class="col-sm-12 alert alert-success" role="alert">
+      <strong>The team was successfully deleted!</strong>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th width="40px">ID</th>
+          <th class="text-right">HOME</th>
+          <th class="text-center"></th>
+          <th class="text-left">AWAY</th>
+          <th width="200px"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="game in htTournamentSchedule.schedule"
+            ng-class="{success: game.saved === true }">
+          <td>{{$index + 1}}</td>
+          <td class="text-right">
+            <table class="pull-right">
+              <tr>
+                <td>{{game[0].name}}</td>
+                <td width="45px"><i class="fa" ng-class="game[0].icon" style="font-size: 28px"></i></td>
+              </tr>
+            </table>
+          </td>
+          <td class="text-center" width="150px">
+            <form name="htTournamentSchedule.form.{{$index}}" novalidate>
+              <table width="100%">
+                <tr>
+                  <td class="text-center" width="60px">
+                    <input style="font-size: 1.2em" class="form-control text-center" type="text"
+                           name="{{'scoreHome'+$index}}" ng-model="game['scoreHome']"
+                           ng-change="htTournamentSchedule.onChange($index, game)" maxlength="3"/>
+                  </td>
+                  <td class="text-center" width="30px">-</td>
+                  <td class="text-center" width="60px">
+                    <input style="font-size: 1.2em" class="form-control text-center" type="text"
+                           name="{{'scoreAway'+$index}}" ng-model="game['scoreAway']"
+                           ng-change="htTournamentSchedule.onChange($index, game)" maxlength="3"/>
+                  </td>
+                </tr>
+              </table>
+            </form>
+          </td>
+          <td class="text-left">
+            <table>
+              <tr>
+                <td width="45px"><i class="fa" ng-class="game[1].icon" style="font-size: 28px"></i></td>
+                <td>{{game[1].name}}</td>
+              </tr>
+            </table>
+          </td>
+
+          <td>
+            <div class="pull-right">
+              <button class="btn btn-default" ng-show="game.changed === true"
+                      ng-click="htTournamentSchedule.cancel($index, game)">
+                <i class="fa fa-close"></i>
+                Cancel
+              </button>
+              <button class="btn btn-success" ng-show="game.changed === true"
+                      ng-click="htTournamentSchedule.save($index, game)">
+                <i class="fa fa-save"></i>
+                Save
+              </button>
+
+              <div ng-show="game.saved === true" style="padding-top: 6px;">
+                <i style="font-size: 1.6em; color: #29c7ab" class="fa fa-check"></i>
+              </div>
+
+              <div ng-show="game.loading === true" style="padding-top: 6px;">
+                <i style="font-size: 1.6em; color: #3498db" class="fa fa-circle-o-notch fa-spin"></i>
+              </div>
+
+            </div>
+
+
+          </td>
+        </tr>
+        </tbody>
+
+      </table>
+
+
+    </div>
+  </div>
+
+
+</div>
+

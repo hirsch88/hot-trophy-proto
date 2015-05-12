@@ -60,6 +60,11 @@
       return date.format('D. MMMM YYYY');
     };
 
+    vm.generate = function (tournament) {
+      tournament.generateSchedule();
+      tournament.setReady();
+    };
+
     // code goes here...
 
   }

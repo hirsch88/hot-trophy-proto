@@ -2,47 +2,46 @@
 
   <div class="container">
 
-    <div class="row">
+    <div class="row" style="padding-bottom: 120px;">
       <div class="col-md-6">
 
         <h1>Generate tournaments <br/>better, faster </h1>
 
         <p class="lead">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati!
+          The time with own table managment for tournaments are over. Create an account now and enjoy the world of
+          HotTrophy.
         </p>
 
-        <div class="row" style="margin-top: 25px">
-          <div class="col-md-12">
-            <!--<button class="btn btn-lg btn-block btn-primary">Try it</button>-->
-            <!--<button class="btn btn-lg btn-info" style="width: 200px; margin-right: 15px">Try it</button>-->
-            <!--<button class="btn btn-lg btn-primary" style="width: 200px">Register</button>-->
-          </div>
-        </div>
       </div>
 
       <div class="col-md-6" style="margin-top: 120px;">
 
-        <form name="htHome.registerForm" class="login-form" novalidate>
+        <form name="htHome.registerForm" class="register-form" novalidate>
 
 
-          <div class="form-group">
-            <input ng-model="htHome.username" name="username" class="form-control" ng-required="true" type="text" placeholder="Pick a username">
-            <ng-messages for="htHome.registerForm.username.$error" role="alert" ng-show="htHome.registerForm.username.$dirty">
+          <div class="form-group col-md-offset-2">
+            <input ng-model="htHome.username" name="username" class="form-control" ng-required="true" type="text"
+                   placeholder="Pick a username">
+            <ng-messages for="htHome.registerForm.username.$error" role="alert"
+                         ng-show="htHome.registerForm.username.$dirty">
               <ng-message when="required">This field is required</ng-message>
             </ng-messages>
           </div>
 
-          <div class="form-group">
-            <input name="email" ng-model="htHome.email" class="form-control" ng-required="true" type="email" placeholder="Your Email">
+          <div class="form-group col-md-offset-2">
+            <input name="email" ng-model="htHome.email" class="form-control" ng-required="true" type="email"
+                   placeholder="Your Email">
             <ng-messages for="htHome.registerForm.email.$error" role="alert" ng-show="htHome.registerForm.email.$dirty">
               <ng-message when="required">This field is required</ng-message>
               <ng-message when="email">This is not a valid email address</ng-message>
             </ng-messages>
           </div>
 
-          <div class="form-group">
-            <input name="password" ng-model="htHome.password" ng-minlength="4" ng-required="true" class="form-control" type="password" placeholder="Create a password">
-            <ng-messages for="htHome.registerForm.password.$error" role="alert" ng-show="htHome.registerForm.password.$dirty">
+          <div class="form-group col-md-offset-2">
+            <input name="password" ng-model="htHome.password" ng-minlength="4" ng-required="true" class="form-control"
+                   type="password" placeholder="Create a password">
+            <ng-messages for="htHome.registerForm.password.$error" role="alert"
+                         ng-show="htHome.registerForm.password.$dirty">
               <ng-message when="required">This field is required</ng-message>
               <ng-message when="minlength">The minimum length is 4</ng-message>
             </ng-messages>
@@ -52,7 +51,9 @@
           <br/>
 
 
-          <button ng-disabled="htHome.registerForm.$invalid" class="btn btn-lg btn-primary" style="width: 200px" ng-click="htHome.register()">Sign up</button>
+          <button ng-disabled="htHome.registerForm.$invalid" class="btn btn-lg btn-primary  col-md-offset-2" style="width: 200px"
+                  ng-click="htHome.register()">Sign up
+          </button>
 
 
         </form>
@@ -66,48 +67,117 @@
 
 </div>
 
-
 <div class="container theme-showcase" role="main">
 
-  <div class="row feature">
-    <div class="col-sm-12">
+  <div class="row feature" style="margin-top: 15px; margin-bottom: 120px">
+    <div class="col-sm-12" style="padding-bottom: 60px">
       <h1>Features</h1>
     </div>
 
-    <div class="col-md-3 feature-items">
+    <div class="row hidden-sm">
+      <div class="col-md-3 col-sm-6 feature-items">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+        <i class="fa fa-table fa-stack-1x fa-inverse"></i>
       </span>
-      <h4>Title</h4>
+        <h4>Liga Modus</h4>
 
-      <p>
-        Lorem ipsum dolor sit amet, consectetur ing elit, sed do eiusmod tempor didunt utem labore et dolore magna.
-      </p>
+        <p>
+          We offer the Liga-Modus for your tournaments. So you are able to play like your favorite leagues. Moreover,
+          the duration can be one day or even one year this is all up to your configuration.
+        </p>
+      </div>
+
+      <div class="col-md-3 col-sm-6 feature-items">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-group fa-stack-1x fa-inverse"></i>
+      </span>
+        <h4>Teams</h4>
+
+        <p>
+          The teams can be manually added or the can be invited by email.
+        </p>
+      </div>
+
+      <div class="col-md-3 col-sm-6 feature-items">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-magic fa-stack-1x fa-inverse"></i>
+      </span>
+        <h4>Generator</h4>
+
+        <p>
+          This is the most valuable feature, because you do not need to spend much time to figure out the schedule for
+          your tournament. This will all be done by the amazing generator.
+        </p>
+      </div>
+
+      <div class="col-md-3 col-sm-6 feature-items">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-star fa-stack-1x fa-inverse"></i>
+      </span>
+        <h4>Ranking</h4>
+
+        <p>
+          Everything is instant on our site, so somebody adds a new result and you get immediately the new rankings.
+        </p>
+      </div>
     </div>
 
-    <div class="col-md-3 feature-items">
+    <div class="row visible-sm visible-xs">
+      <div class="col-md-3 col-sm-6 feature-items">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+        <i class="fa fa-table fa-stack-1x fa-inverse"></i>
       </span>
-      <h4>Title</h4>
+        <h4>Liga Modus</h4>
 
-      <p>
-        Lorem ipsum dolor sit amet, consectetur ing elit, sed do eiusmod tempor didunt utem labore et dolore magna.
-      </p>
+        <p>
+          We offer the Liga-Modus for your tournaments. So you are able to play like your favorite leagues. Moreover,
+          the duration can be one day or even one year this is all up to your configuration.
+        </p>
+      </div>
+
+      <div class="col-md-3 col-sm-6 feature-items">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-group fa-stack-1x fa-inverse"></i>
+      </span>
+        <h4>Teams</h4>
+
+        <p>
+          The teams can be manually added or the can be invited by email.
+        </p>
+      </div>
     </div>
 
-    <div class="col-md-3 feature-items">
+    <div class="row visible-sm visible-xs">
+      <div class="col-md-3 col-sm-6 feature-items">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+        <i class="fa fa-magic fa-stack-1x fa-inverse"></i>
       </span>
-      <h4>Title</h4>
+        <h4>Generator</h4>
 
-      <p>
-        Lorem ipsum dolor sit amet, consectetur ing elit, sed do eiusmod tempor didunt utem labore et dolore magna.
-      </p>
+        <p>
+          This is the most valuable feature, because you do not need to spend much time to figure out the schedule for
+          your tournament. This will all be done by the amazing generator.
+        </p>
+      </div>
+
+      <div class="col-md-3 col-sm-6 feature-items">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-star fa-stack-1x fa-inverse"></i>
+      </span>
+        <h4>Ranking</h4>
+
+        <p>
+          Everything is instant on our site, so somebody adds a new result and you get immediately the new rankings.
+        </p>
+      </div>
     </div>
 
   </div>

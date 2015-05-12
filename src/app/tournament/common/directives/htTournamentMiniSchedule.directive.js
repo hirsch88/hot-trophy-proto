@@ -36,6 +36,8 @@
   function TournamentMiniScheduleController() {
     var vm = this;
 
+    console.info(vm);
+
     vm.schedule = [];
     _(vm.tournament.schedule)
       .forEach(function (row) {
@@ -49,6 +51,21 @@
         return game.scoreHome !== null && game.scoreAway !== null;
       })
       .value();
+
+
+    vm.scheduleReady = [];
+    _(vm.tournament.schedule)
+      .forEach(function (row) {
+        vm.scheduleReady.push(row[0]);
+        vm.scheduleReady.push(row[1]);
+      })
+      .value();
+
+    //vm.scheduleReady = _(vm.scheduleReady)
+    //  .filter(function (game) {
+    //    return game.scoreHome !== null && game.scoreAway !== null;
+    //  })
+    //  .value();
 
 
   }

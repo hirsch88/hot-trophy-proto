@@ -65,7 +65,9 @@
 
 
     vm.onChange = function (index, game) {
-      if (game.scoreHome !== '' && game.scoreAway !== '' && game.scoreHome !== null && game.scoreAway !== null && game.scoreHome !== undefined && game.scoreAway !== undefined && _.isNumber(parseInt(game.scoreHome, 10)) && _.isNumber(parseInt(game.scoreAway, 10))) {
+      if (game.scoreHome !== '' && game.scoreAway !== '' && game.scoreHome !== null &&
+        game.scoreAway !== null && game.scoreHome !== undefined && game.scoreAway !== undefined
+        && _.isNumber(parseInt(game.scoreHome, 10)) && _.isNumber(parseInt(game.scoreAway, 10))) {
         game.changed = true;
       } else {
         game.changed = false;
@@ -94,9 +96,9 @@
         $timeout(function () {
           game.saved = false;
 
-        }, 2000)
+        }, 2000);
 
-      }, 800)
+      }, 800);
 
 
     };

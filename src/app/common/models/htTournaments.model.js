@@ -11,7 +11,7 @@
     .constant('EVENT_STATUS_READY', 1)
     .constant('EVENT_STATUS_ACTIVE', 2)
     .constant('EVENT_STATUS_ARCHIVE', 3)
-    .factory('htTournamentModel', htTournamentModel);
+    .factory('HtTournamentModel', HtTournamentModel);
 
 
   /**
@@ -26,7 +26,7 @@
    * offen + anmelung
    *
    */
-  function htTournamentModel(EVENT_STATUS_OPEN, EVENT_STATUS_READY, EVENT_STATUS_ACTIVE, $rootScope) {
+  function HtTournamentModel(EVENT_STATUS_OPEN, EVENT_STATUS_READY, EVENT_STATUS_ACTIVE, $rootScope) {
 
     $rootScope.eventIdCounter = 0;
 
@@ -86,7 +86,7 @@
      *
      */
     Event.prototype.generateSchedule = function () {
-      this.schedule = RoundRobin(this.teams.length, this.teams);
+      this.schedule = roundRobin(this.teams.length, this.teams);
 
       this.schedule = _(this.schedule)
         .map(function (round) {
@@ -137,7 +137,8 @@
 
           // played
           row.ply = _.countBy(self.schedule, function (round) {
-              return (round[0][0].id === row.team.id || round[0][1].id === row.team.id ) && round[0].scoreHome !== null ||
+              return (round[0][0].id === row.team.id || round[0][1].id === row.team.id )
+                && round[0].scoreHome !== null ||
                 (round[1][0].id === row.team.id || round[1][1].id === row.team.id ) && round[1].scoreHome !== null;
             }).true || 0;
 
@@ -145,8 +146,10 @@
           _(self.schedule)
             .filter(function (round) {
               console.log(round);
-              var firstGame = (round[0][0].id === row.team.id || round[0][1].id === row.team.id ) && round[0].scoreHome !== null;
-              var secondGame = (round[1][0].id === row.team.id || round[1][1].id === row.team.id ) && round[1].scoreHome !== null;
+              var firstGame = (round[0][0].id === row.team.id || round[0][1].id === row.team.id )
+                && round[0].scoreHome !== null;
+              var secondGame = (round[1][0].id === row.team.id || round[1][1].id === row.team.id )
+                && round[1].scoreHome !== null;
               return firstGame || secondGame;
             })
             .map(function (round) {
@@ -201,17 +204,20 @@
               if (index >= 0) {
 
                 // Goals
-                row.gp += round[roundIndex][getScore(sideIndex)]; //( round[roundIndex][sideIndex].score !== null ) ? round[roundIndex][sideIndex].score : 0;
-                row.gn += round[roundIndex][reverseScore(sideIndex)]; //( round[roundIndex][sideIndex].score !== null ) ? round[roundIndex][sideIndex].score : 0;
+                row.gp += round[roundIndex][getScore(sideIndex)];
+                row.gn += round[roundIndex][reverseScore(sideIndex)];
 
                 // Loses
-                row.lose += ( round[roundIndex][getScore(sideIndex)] < round[roundIndex][reverseScore(sideIndex)] ) ? 1 : 0;
+                row.lose += ( round[roundIndex][getScore(sideIndex)] < round[roundIndex][reverseScore(sideIndex)] )
+                  ? 1 : 0;
 
                 // Draws
-                row.draw += ( round[roundIndex][getScore(sideIndex)] === round[roundIndex][reverseScore(sideIndex)] ) ? 1 : 0;
+                row.draw += ( round[roundIndex][getScore(sideIndex)] === round[roundIndex][reverseScore(sideIndex)] )
+                  ? 1 : 0;
 
                 // Wins
-                row.win += ( round[roundIndex][getScore(sideIndex)] > round[roundIndex][reverseScore(sideIndex)] ) ? 1 : 0;
+                row.win += ( round[roundIndex][getScore(sideIndex)] > round[roundIndex][reverseScore(sideIndex)] )
+                  ? 1 : 0;
 
                 // Points
                 if (round[roundIndex][getScore(sideIndex)] > round[roundIndex][reverseScore(sideIndex)]) {
@@ -254,7 +260,7 @@
 
   ////////////////////////////////////////////////
 
-  const DUMMY = -1;
+  var DUMMY = -1;
 
   /**
    * Rund Robin
@@ -263,7 +269,7 @@
    * @returns {Array}
    * @constructor
    */
-  function RoundRobin(n, ps) {
+  function roundRobin(n, ps) {
 // returns an array of round representations (array of player pairs).
 // http://en.wikipedia.org/wiki/Round-robin_tournament#Scheduling_algorithm
     // n = num players

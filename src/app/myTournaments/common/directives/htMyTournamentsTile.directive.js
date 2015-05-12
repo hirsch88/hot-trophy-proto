@@ -60,7 +60,7 @@
       'col-md-8':  vm.tournament.status === EVENT_STATUS_ACTIVE,
       'col-sm-6':  vm.tournament.status !== EVENT_STATUS_ACTIVE,
       'col-sm-12': vm.tournament.status === EVENT_STATUS_ACTIVE
-    }
+    };
 
   }
 

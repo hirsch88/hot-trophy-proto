@@ -16,7 +16,6 @@
   "dependencies": {
     "jquery": "*",
     "bootstrap": "*",
-    "font-awesome": "*",
     "lodash": "*",
     "moment": "~2.10.2",
     "angular": "*",

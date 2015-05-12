@@ -28,7 +28,7 @@
       controllerAs:     'htHeader',
       link:             link,
       bindToController: true // because the scope is isolated
-    }
+    };
   }
 
   function link(scope, element, attrs) {
@@ -47,7 +47,7 @@
 
     vm.isAdminSection = function () {
       return $scope.isAdmin;
-    }
+    };
 
   }
 

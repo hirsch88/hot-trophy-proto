@@ -64,6 +64,24 @@ gulp.task('serve', ['index'], function () {
 
 });
 
+gulp.task('serve-dist', ['dist'], function () {
+
+  browserSync({
+    server: {
+      baseDir: projectConfig.path.distDir,
+      index:   projectConfig.path.main,
+      browser: 'Google Chrome',
+      open:    true
+    }
+  });
+
+  gulp.watch(path.join(projectConfig.path.srcDir, projectConfig.path.app.templates), ['dist', browserSync.reload]);
+  gulp.watch(path.join(projectConfig.path.srcDir, projectConfig.path.asset.less), ['dist', browserSync.reload]);
+  gulp.watch(path.join(projectConfig.path.srcDir, projectConfig.path.app.scripts), ['dist', browserSync.reload]);
+  gulp.watch('./bower.json', ['dist', browserSync.reload]);
+
+});
+
 /**
  * BUILD
  */
@@ -221,7 +239,7 @@ gulp.task('dist-copy-assets', ['dist-clean'], function () {
 /**
  * MINIFY TASKS
  */
-gulp.task('dist-app', ['dist-minify-app-css', 'dist-minify-app-js']);
+gulp.task('dist-app', ['dist-minify-app-css', 'dist-minify-app-js', 'dist-minify-app-html']);
 
 gulp.task('dist-bower', ['dist-minify-bower-js', 'dist-minify-bower-css']);
 
@@ -253,7 +271,7 @@ gulp.task('dist-minify-app-css', ['style'], function () {
 
   return gulp
     .src(cssFiles, {base: './'})
-    .pipe(minifyCSS({keepBreaks: true}))
+    .pipe(minifyCSS({keepBreaks: true, processImport: false}))
     .pipe($.rename(newCssFileName))
     .pipe(header(projectConfig.banner, {pkg: projectConfig.pkg}))
     .pipe(gulp.dest(projectConfig.path.distDir));
@@ -261,8 +279,8 @@ gulp.task('dist-minify-app-css', ['style'], function () {
 
 gulp.task('dist-minify-app-html', function () {
 
-  var source = path.join(projectConfig.path.srcDir, projectConfig.path.app.templates);
-  var destination = path.join(projectConfig.path.distDir, projectConfig.path.appDir);
+  var source = path.join(__dirname, projectConfig.path.srcDir, projectConfig.path.app.templates);
+  var destination = path.join(__dirname, projectConfig.path.distDir, projectConfig.path.appDir);
 
   return gulp.src(source)
     .pipe($.htmlmin({collapseWhitespace: true}))
